@@ -1,0 +1,9 @@
+# Ignora todo lo de la carpeta images, excepto el archivo fotos/.gitingnore
+assets/img/*
+!assets/img/.gitignore
+
+assets/slides/*
+!assets/slides/.gitignore
+
+assets/obras/*
+!assets/obras/.gitignore

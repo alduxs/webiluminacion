@@ -12,14 +12,111 @@
 body {
   font-family: "Roboto", serif;
   font-optical-sizing: auto;
+  background-color: #fcfcfc;
 }
 
 /* Tipografía */
 /* Variables */
 /* Colores de Backgrounds */
 /* Font colors */
+/* Components */
+.btn11 {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 300px;
+  left: 240px;
+  transition-duration: 0.5s;
+}
+.btn11 .icon-left {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 4px;
+  width: 15px;
+  top: 30px;
+  background-color: #212121;
+}
+.btn11 .icon-left:before {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 15px;
+  height: 4px;
+  background-color: #212121;
+  content: "";
+  top: -10px;
+}
+.btn11 .icon-left:after {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 15px;
+  height: 4px;
+  background-color: #212121;
+  content: "";
+  top: 10px;
+}
+.btn11 .icon-left:hover {
+  cursor: pointer;
+}
+.btn11 .icon-right {
+  transition-duration: 0.5s;
+  position: absolute;
+  height: 4px;
+  width: 15px;
+  top: 30px;
+  background-color: #212121;
+  left: 15px;
+}
+.btn11 .icon-right:before {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 15px;
+  height: 4px;
+  background-color: #212121;
+  content: "";
+  top: -10px;
+}
+.btn11 .icon-right:after {
+  transition-duration: 0.5s;
+  position: absolute;
+  width: 15px;
+  height: 4px;
+  background-color: #212121;
+  content: "";
+  top: 10px;
+}
+.btn11.open .icon-left {
+  transition-duration: 0.5s;
+  background: transparent;
+}
+.btn11.open .icon-left:before {
+  transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+}
+.btn11.open .icon-left:after {
+  transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+}
+.btn11.open .icon-right {
+  transition-duration: 0.5s;
+  background: transparent;
+}
+.btn11.open .icon-right:before {
+  transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+}
+.btn11.open .icon-right:after {
+  transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+}
+.btn11:hover {
+  cursor: pointer;
+}
+
 /* LAYOUT */
 /* Header */
+.header-home .top-navigation {
+  background-color: #fff;
+  padding: 10px;
+}
+.header-home .top-navigation .menu {
+  display: block;
+}
 /* PAGINAS */
 /* Home */
 

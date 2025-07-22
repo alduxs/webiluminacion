@@ -22,13 +22,43 @@ include_once('admin/includes/class.inc.php');
 
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/css/styles.css" />
+    <!-- FONTAWESOME -->
+    <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/fontawsome/css/all.css" />
 </head>
 
 <body>
 
     <header class="header-home">
 
+        <div class="top-navigation">
+            <div class="logo"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></div>
+
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Obras</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">Empresa</a></li>
+                    <li><a href="#">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <div class="btn11" data-menu="11" id="bt-hamburger">
+                <div class="icon-left"></div>
+                <div class="icon-right"></div>
+            </div>
+
+            <div class="redes-top">
+                <ul>
+                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+                </ul>
+            </div>
+
+        </div>
+
         <!-- Navegacion -->
+        <!--
         <div class="top-navigation">
             <div class="container">
                 <div class="row">
@@ -69,6 +99,7 @@ include_once('admin/includes/class.inc.php');
                 </div>
             </div>
         </div>
+-->
 
         <div class="text-slide">
             <div class="container">

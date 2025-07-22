@@ -3,12 +3,12 @@ $dark: #212121;
 $light: #efefef;
 $color: #b3e5fc;
 
-@mixin btn($left, $top) {
+@mixin btn($rigth, $top) {
   position: absolute;
   width: 60px;
   height: 60px;
   top: $top;
-  left: $left;
+  right: $rigth;
   transition-duration: 0.5s;
 }
 
@@ -57,7 +57,7 @@ $color: #b3e5fc;
 
 
 .btn11{
-  @include btn(240px, 300px);
+  @include btn(20px, 15px);
   
   .icon-left {
     @include icon(4px, 15px);

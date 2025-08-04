@@ -1,0 +1,29 @@
+footer{
+    background-color: $bg-quaternary-color;
+    color: $font-tertiary-color;
+    padding: 80px 30px;
+    
+   h2{
+    text-transform: uppercase;
+    margin-bottom: 10px;
+   }
+   ul{
+    list-style: none;
+    padding: 0;
+    a{
+        color: $font-tertiary-color;
+        text-decoration: none;
+        font-weight: 500;
+    }
+    i{
+        font-size: 1.2rem;
+        margin-top: 10px;
+        opacity: 0.7;
+    }
+   }
+   #map{
+    width: 100%;
+    height: 300px;
+    margin-top: 30px;
+   }
+}

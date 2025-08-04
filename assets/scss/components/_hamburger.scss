@@ -58,7 +58,8 @@ $color: #b3e5fc;
 
 .btn11{
   @include btn(20px, 15px);
-  
+  z-index: 2300;
+  display: block;
   .icon-left {
     @include icon(4px, 15px);
     

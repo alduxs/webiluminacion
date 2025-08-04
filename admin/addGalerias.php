@@ -1,0 +1,290 @@
+<?php
+include_once("includes/checkLogin.inc.php");
+include_once('includes/conexion.inc.php');
+include_once('includes/funciones.inc.php');
+//
+include_once('includes/class.inc.php');
+//
+$link = Conectarse();
+//
+$objContenido = new General();
+//Tipo de Propiedad
+
+
+?>
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Panel de Control - <?php echo _CONST_TITLE_ ?></title>
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo _CONST_DOMINIO_ ?>apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?php echo _CONST_DOMINIO_ ?>favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo _CONST_DOMINIO_ ?>favicon-16x16.png">
+    <link rel="manifest" href="<?php echo _CONST_DOMINIO_ ?>site.webmanifest">
+    <link rel="mask-icon" href="<?php echo _CONST_DOMINIO_ ?>safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/estilos.css" rel="stylesheet" type="text/css">
+    <link href="css/plugins/select2/select2.min.css" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/amsify.suggestags.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+</head>
+
+<head>
+
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <?php include_once('includes/columnaTop.inc.php'); ?>
+                    <?php include_once('includes/columnaLeft.inc.php'); ?>
+                </ul>
+            </div>
+        </nav>
+        <div id="page-wrapper" class="gray-bg">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <div class="navbar-header">
+                        <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li><a href="logout.php"><i class="fa fa-sign-out"></i> Log out</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row wrapper border-bottom white-bg page-heading">
+                <div class="col-sm-12">
+                    <h2>Agregar Galería</h2>
+                    <ol class="breadcrumb">
+                        <li><a href="home.php?seccion=agenda">Home</a></li>
+                        <li><a href="#">Galerías</a></li>
+                        <li class="active"><strong>Agregar galería</strong></li>
+                    </ol>
+                </div>
+            </div>
+            <div class="wrapper wrapper-content animated fadeInRight">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <form action="svGalerias.php" method="post" enctype="multipart/form-data" name="form1">
+                                    <input type="hidden" name="strOperacion" value="I" />
+                                    <input type="hidden" name="idusuario" value="0">
+
+
+
+                                    <!-- Título -->
+                                    <div class="form-group col-xs-12">
+                                        <label for="titulo">Nombre</label>
+                                        <input type="text" class="form-control" name="titulo" id="titulo">
+                                    </div>
+                                    <div class="hr-line-dashed col-xs-12"></div>
+
+                                    <div class="col-xs-12">
+                                        <h3 class="borderh3">Imágenes</h3>
+                                    </div>
+
+                                    <!-- Galeria de imagenes -->
+                                    <div class="col-lg-12">
+                                        <div class="ibox float-e-margins">
+                                            
+                                            <div class="ibox-content">
+                                                <div class="row">
+                                                    <div class="col-xs-12">
+                                                        <p class="text-center"><input name="upload" type="submit" class="btn btn-primary" id="upload" value="Subir Imagen"></p>
+                                                    </div>
+                                                    <div class="col-xs-12">
+                                                        <div class="spiner-example" id="status">
+                                                            <div class="sk-spinner sk-spinner-wave">
+                                                                <div class="sk-rect1"></div>
+                                                                <div class="sk-rect2"></div>
+                                                                <div class="sk-rect3"></div>
+                                                                <div class="sk-rect4"></div>
+                                                                <div class="sk-rect5"></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!-- Carga -->
+                                                <div class="tooltip-demo">
+                                                    <div class="row" id="files">
+
+                                                    </div>
+                                                </div>
+                                                <!-- Fin carga -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- Fin galeria de imagenes -->
+
+                                    <input type="hidden" name="id_galeria" id="id_galeria" value="">
+
+                                    <div class="hr-line-dashed col-xs-12"></div>
+
+
+                                    <!-- Publicado -->
+                                    <div class="form-group col-xs-12">
+                                        <label for="publicado">Publicada</label>
+                                        <p><label class="checkbox-inline i-checks"> <input type="radio" value="1" name="publicado"> <i></i> Si </label><label class="checkbox-inline i-checks"> <input name="publicado" type="radio" value="0" checked> <i></i> No </label></p>
+                                    </div>
+                                    <div class="hr-line-dashed col-xs-12"></div>
+
+
+
+
+
+                                    <div class="form-group text-center col-xs-12">
+                                        <input name="agregar" type="submit" class="btn btn-primary" id="agregar" value="Enviar">
+                                    </div>
+                                </form>
+                                <input name="orden" value="" type="hidden" id="orden">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div>&copy; 2014 - <?php echo date("Y") ?></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
+    <!-- Custom and plugin javascript -->
+    <script src="js/inspinia.js"></script>
+    <script src="js/plugins/pace/pace.min.js"></script>
+    <!-- iCheck -->
+    <script src="js/plugins/iCheck/icheck.min.js"></script>
+    <!-- Tinymce -->
+    <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+    <!-- Data picker -->
+    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <!-- Select2 -->
+    <script src="js/plugins/select2/select2.full.min.js"></script>
+    <!-- Chosen -->
+    <script src="js/plugins/chosen/chosen.jquery.js"></script>
+    <!-- Typehead -->
+    <!--<script src="../assets/js/typeahead.bundle.js"></script>-->
+    <!--tag sugest -->
+    <script src="js/jquery.amsify.suggestags.js"></script>
+    <!-- AJAX Upload -->
+    <script type="text/javascript" src="js/ajaxupload.3.5.js"></script>
+
+
+
+    <script>
+        var actMapavisible = 0;
+        var cityCircle;
+        var marker;
+        $(document).ready(function() {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+
+        });
+
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': {
+                allow_single_deselect: true
+            },
+            '.chosen-select-no-single': {
+                disable_search_threshold: 10
+            },
+            '.chosen-select-no-results': {
+                no_results_text: 'Oops, nothing found!'
+            },
+            '.chosen-select-width': {
+                width: "95%"
+            }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+        /* Carga mediante AJAX de Imagenes en la galería */
+        var numeroRandom = Math.floor((Math.random() * 100000) + 1);
+        $("#id_galeria").attr("value", numeroRandom);
+        jQuery(function() {
+            var btnUpload = $('#upload');
+            var status = $('#status');
+            new AjaxUpload(btnUpload, {
+                action: 'imagen-gal-subir.php?id_galeria=' + numeroRandom,
+                name: 'uploadfile',
+                onSubmit: function(file, ext) {
+                    if (!(ext && /^(jpg|png|jpeg|gif)$/.test(ext))) {
+                        // extension is not allowed
+                        status.text('Only JPG, PNG or GIF files are allowed');
+                        return false;
+                    }
+                    status.fadeIn('slow');
+                },
+                onComplete: function(file, response) {
+                    //On completion clear the status
+                    status.fadeOut('slow');
+                    var divide = response.split(":");
+                    var image = divide[0];
+                    var id = divide[1];
+                    $('<div class="col-xs-4 col-md-2 bloque" id="' + id + '"></div>').appendTo('#files').html('<div class="bimagen"><img src="../assets/galerias/med/' + image + '" class="img-responsive center-block" /><div class="acciones"><button type="button" onclick="return borrarImagen(' + id + ')" class="btn btn-primary btn-xs btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar Imagen"><i class="fa fa-trash-o"></i></button> </div></div>');
+                }
+            });
+        });
+
+        /* Eliminar una imagen */
+        function borrarImagen(id) {
+
+            if (confirm('Desea borrar la imagen?')) {
+                $.getScript('imagen-gal-borrar.php?id_imagen=' + id);
+                $('#' + id + '').remove();
+                return false;
+            }
+        };
+
+        /* Ordenar Imagenes*/
+
+        $(function() {
+
+            $("#files").sortable({
+                update: function() {
+                    var result = $("#files").sortable('toArray');
+                    $("#orden").attr("value", result);
+                    var resulta = $("#orden").attr("value");
+                    $.post("svOrdenGalImagene.php", {
+                            orden: resulta
+                        })
+                        .done(function(data) {
+                            var n = $("#files .bloque").length;
+                            var divide = resulta.split(",");
+                            console.log(n);
+                            var number;
+
+                        });
+
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

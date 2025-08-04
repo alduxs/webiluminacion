@@ -1,7 +1,7 @@
 <?php
-include_once('admin/includes/conexion.inc.php');
-include_once('admin/includes/funciones.inc.php');
-include_once('admin/includes/class.inc.php');
+include_once('config/conexion.inc.php');
+include_once('config/funciones.inc.php');
+include_once('config/classnew.inc.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,12 +28,14 @@ include_once('admin/includes/class.inc.php');
 
 <body>
 
+    <div class="velo" id="velo"></div>
+
     <header class="header-home">
 
         <div class="top-navigation">
             <div class="logo"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></div>
 
-            <nav class="menu">
+            <nav class="menu" id="menu">
                 <ul>
                     <li><a href="#">Inicio</a></li>
                     <li><a href="#">Obras</a></li>
@@ -57,57 +59,15 @@ include_once('admin/includes/class.inc.php');
 
         </div>
 
-        <!-- Navegacion -->
-        <!--
-        <div class="top-navigation">
-            <div class="container">
-                <div class="row">
 
-                    <div class="col-12">
-
-                        <div class="bloque-navegacion">
-                            <div class="logo"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></div>
-
-                            <nav class="menu">
-                                <ul>
-                                    <li><a href="#">Inicio</a></li>
-                                    <li><a href="#">Obras</a></li>
-                                    <li><a href="#">Servicios</a></li>
-                                    <li><a href="#">Empresa</a></li>
-                                    <li><a href="#">Contacto</a></li>
-                                </ul>
-                            </nav>
-
-                            <div class="btn11" data-menu="11" id="bt-hamburger">
-                                <div class="icon-left"></div>
-                                <div class="icon-right"></div>
-                            </div>
-
-                            <div class="redes-top">
-                                <ul>
-                                    <li><a href="#"><i class="bi bi-instagram"></i></a></li>
-                                    <li><a href="#"><i class="bi bi-facebook"></i></a></li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-                    </div>
-
-
-
-                </div>
-            </div>
-        </div>
--->
 
         <div class="text-slide">
             <div class="container">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <div class="highligth">Iluminacion</div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-12 col-md-6">
                         <div class="details">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam aut in reprehenderit, quam veniam illum perferendis animi.</p>
                         </div>
@@ -134,16 +94,36 @@ include_once('admin/includes/class.inc.php');
 
                 <div class="row">
 
-                    <div class="col-12">
+                    <div class="col-12 col-md-6">
                         <!-- Obra Item -->
-                        <div class="obra-item">
+                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
 
                             <div class="obra-infomation">
                                 <div class="obra-lead">
                                     <h2>Centro de justicia penal</h2>
                                     <p class="localidad">Rosario</p>
                                 </div>
-                                <div class="obra-fecha"></div>
+                                <div></div>
+                                <div></div>
+                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
+                            </div>
+
+                        </div>
+                        <!-- Fin Obra Item -->
+
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <!-- Obra Item -->
+                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
+
+                            <div class="obra-infomation">
+                                <div class="obra-lead">
+                                    <h2>Centro de justicia penal</h2>
+                                    <p class="localidad">Rosario</p>
+                                </div>
+                                <div></div>
+                                <div></div>
+                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
                             </div>
 
                         </div>
@@ -155,8 +135,8 @@ include_once('admin/includes/class.inc.php');
                 <!-- Fin Obras -->
                 <!-- Mas Obras -->
                 <div class="row">
-                    <div class="col-12">
-                        <div class="bt-mas-obras"><a href="#">Mas obras</a></div>
+                    <div class="col-12 text-end">
+                        <div class="bt-mas-obras"><a href="obras.php">Mas obras <i class="fa-solid fa-angle-right"></i></a></div>
                     </div>
                 </div>
                 <!-- Fin Mas Obras -->
@@ -171,57 +151,43 @@ include_once('admin/includes/class.inc.php');
                 <!-- Servicios -->
                 <div class="row">
                     <div class="col-12">
-                        <h3>Servicios.</h3>
+                        <div class="servicios-contenedor">
+                            <h3 class="titulo-servicio">Servicios.</h3>
+                            <div class="servicios-texto">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sit est molestiae incidunt, dolores non cum expedita perspiciatis alias hic repellat illo fugiat perferendis quaerat architecto quos quas at recusandae.</p>
+                            </div>
+                            <div class="servicios-imagen"></div>
+                        </div>
+
+
                     </div>
-                    <div class="col-12">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sit est molestiae incidunt, dolores non cum expedita perspiciatis alias hic repellat illo fugiat perferendis quaerat architecto quos quas at recusandae.</p>
-                    </div>
-                    <div class="col-12">
-                        <img src="" alt="">
-                    </div>
+
                 </div>
                 <!-- Fin Servicios -->
                 <!-- Empresa -->
-                <div class="row"></div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="empresa-contenedor">
+                            <h3 class="titulo-empresa">Empresa.</h3>
+                            <div class="empresa-texto">
+                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sit est molestiae incidunt, dolores non cum expedita perspiciatis alias hic repellat illo fugiat perferendis quaerat architecto quos quas at recusandae.</p>
+                            </div>
+                            <h3 class="titulo-empresa2">Empresa.</h3>
+                        </div>
+                    </div>
+                </div>
 
-                <div class="col-12">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias sit est molestiae incidunt, dolores non cum expedita perspiciatis alias hic repellat illo fugiat perferendis quaerat architecto quos quas at recusandae.</p>
-                </div>
-                <div class="col-12">
-                    <h3>Empresa.</h3>
-                </div>
+
             </div>
             <!-- Fin Empresa -->
 
-            </div>
 
 
         </section>
 
     </main>
 
-    <footer>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h2>Contacto</h2>
-                    <ul>
-                        <li>Entre Rios 278</li>
-                        <li>+54 341 6916999</li>
-                        <li>info@websailuminacion.com.ar</li>
-                        <li><a href="#"><i class="bi bi-instagram"></i></a> <a href="#"><i class="bi bi-facebook"></i></a></li>
-                    </ul>
-                </div>
-
-                <div class="col-12">
-                    <div id="map"></div>
-                </div>
-
-            </div>
-        </div>
-
-    </footer>
+    <?php include_once('includes/footer.php'); ?>
 
     <!-- BOOTSTRAP JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

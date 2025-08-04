@@ -1,0 +1,124 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+/* Media query para tabletas */
+@media (min-width: 992px) {
+  .header-home {
+    .top-navigation {
+      width: 960px;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-items: center;
+      @include grid(grid, 1fr 5fr 1fr);
+    }
+    .text-slide {
+      width: 960px;
+      .details {
+        margin-left: 0%;
+      }
+    }
+  }
+
+  .header-int {
+    .top-navigation {
+      width: 960px;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-items: center;
+      @include grid(grid, 1fr 5fr 1fr);
+    }
+  }
+
+  .home-empresa {
+    .servicios-contenedor {
+      @include grid(grid, 2fr 3fr 1fr);
+      gap: 10px;
+
+      .servicios-imagen {
+        display: flex;
+        background-image: url("../../assets/img/imagen-servicio-home.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: bottom;
+      }
+    }
+  }
+
+  .una-obras {
+    padding: 80px 20px;
+
+    .imagenes {
+      @include grid(grid, 3fr 1fr);
+      align-items: start;
+      .imagen-pincipal {
+        height: 250px;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .imagen-thumbs {
+        @include grid(grid, 1fr 1fr 1fr 1fr);
+        gap: 10px;
+        .imagen-thumb {
+          height: 80px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+      }
+    }
+  }
+
+}
+@media (min-width: 1200px) {
+  .header-home {
+    .top-navigation {
+      width: 1140px;
+      @include grid(grid, 1fr 5fr 1fr);
+    }
+    .text-slide {
+      width: 1140px;
+    }
+  }
+
+  .header-int {
+    .top-navigation {
+      width: 1140px;
+      @include grid(grid, 1fr 5fr 1fr);
+    }
+  }
+
+  .una-obras {
+
+    .imagenes {
+     
+      .imagen-pincipal {
+        height: 350px;
+      }
+      .imagen-thumbs {
+        @include grid(grid, 1fr 1fr 1fr);
+        gap: 10px;
+        .imagen-thumb {
+          height: 50px;
+
+        }
+      }
+    }
+  }
+}
+@media (min-width: 1400px) {
+  .header-home {
+    .top-navigation {
+      width: 1320px;
+      @include grid(grid, 1fr 5fr 1fr);
+    }
+    .header-int {
+      .top-navigation {
+        width: 1320px;
+        @include grid(grid, 1fr 5fr 1fr);
+      }
+    }
+    .text-slide {
+      width: 1320px;
+    }
+  }
+}

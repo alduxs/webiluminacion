@@ -1,0 +1,149 @@
+@import "../abstracts/variables";
+@import "../abstracts/mixins";
+
+/* Media query para tabletas */
+@media (min-width: 768px) {
+  .btn11 {
+    display: none;
+  }
+  .header-home {
+    .top-navigation {
+      background-color: #fff;
+      padding: 10px 12px;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-items: center;
+      @include grid(grid, 1fr 5fr 1fr);
+      .logo {
+      }
+      .menu {
+        position: relative;
+        top: 0;
+        right: 0px;
+        height: auto;
+        padding: 30px 20px;
+        display: flex;
+        align-items: center;
+        z-index: 2100;
+        transition: all 0.5s ease-in-out;
+        ul {
+          li {
+            display: inline-block;
+          }
+          a {
+            font-size: 1.1rem;
+            margin: 0 7px;
+          }
+        }
+      }
+    }
+    .text-slide {
+      .highligth {
+        font-size: 3.5rem;
+        font-weight: 500;
+        margin-bottom: 15px;
+        text-shadow: 0px 1px 12px rgba(255, 255, 255, 0.9);
+      }
+      .details {
+        width: 100%;
+      }
+    }
+  }
+
+  .header-int {
+    .top-navigation {
+      background-color: #fff;
+      padding: 10px 12px;
+      width: 100%;
+      justify-content: space-evenly;
+      align-items: center;
+      justify-items: center;
+      @include grid(grid, 1fr 5fr 1fr);
+      .logo {
+      }
+      .menu {
+        position: relative;
+        top: 0;
+        right: 0px;
+        height: auto;
+        padding: 30px 20px;
+        display: flex;
+        align-items: center;
+        z-index: 2100;
+        transition: all 0.5s ease-in-out;
+        ul {
+          li {
+            display: inline-block;
+          }
+          a {
+            font-size: 1.1rem;
+            margin: 0 7px;
+          }
+        }
+      }
+    }
+  }
+
+  .home-empresa {
+    .servicios-contenedor {
+      @include grid(grid, 1fr 2fr);
+      .titulo-servicio {
+        height: 100%;
+      }
+      .servicios-texto {
+        margin-top: 0px;
+      }
+      .servicios-imagen {
+        display: none;
+      }
+    }
+    .empresa-contenedor {
+      @include grid(grid, 2fr 1fr);
+
+      .titulo-empresa,
+      .titulo-empresa2 {
+        height: 100%;
+      }
+      .titulo-empresa {
+        display: none;
+      }
+      .titulo-empresa2 {
+        display: flex;
+      }
+    }
+  }
+
+  .una-obras {
+    padding: 80px 20px;
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+    }
+    .imagenes {
+      @include grid(grid, 1fr);
+      .imagen-pincipal {
+        height: 350px;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+      .imagen-thumbs {
+        @include grid(grid, 1fr 1fr 1fr 1fr 1fr);
+        gap: 10px;
+        .imagen-thumb {
+          height: 80px;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        }
+      }
+    }
+  }
+}
+footer {
+  #map {
+    margin-top: 0px;
+  }
+}

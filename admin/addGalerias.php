@@ -1,14 +1,12 @@
 <?php
 include_once("includes/checkLogin.inc.php");
-include_once('includes/conexion.inc.php');
-include_once('includes/funciones.inc.php');
-//
-include_once('includes/class.inc.php');
+include_once('../config/classnew.inc.php');
+include_once('../config/conexion.inc.php');
+include_once('../config/funciones.inc.php');
 //
 $link = Conectarse();
 //
 $objContenido = new General();
-//Tipo de Propiedad
 
 
 ?>
@@ -83,8 +81,6 @@ $objContenido = new General();
                                     <input type="hidden" name="strOperacion" value="I" />
                                     <input type="hidden" name="idusuario" value="0">
 
-
-
                                     <!-- Título -->
                                     <div class="form-group col-xs-12">
                                         <label for="titulo">Nombre</label>
@@ -143,8 +139,6 @@ $objContenido = new General();
 
 
 
-
-
                                     <div class="form-group text-center col-xs-12">
                                         <input name="agregar" type="submit" class="btn btn-primary" id="agregar" value="Enviar">
                                     </div>
@@ -183,8 +177,7 @@ $objContenido = new General();
     <script src="js/plugins/chosen/chosen.jquery.js"></script>
     <!-- Typehead -->
     <!--<script src="../assets/js/typeahead.bundle.js"></script>-->
-    <!--tag sugest -->
-    <script src="js/jquery.amsify.suggestags.js"></script>
+
     <!-- AJAX Upload -->
     <script type="text/javascript" src="js/ajaxupload.3.5.js"></script>
 
@@ -269,7 +262,7 @@ $objContenido = new General();
                     var result = $("#files").sortable('toArray');
                     $("#orden").attr("value", result);
                     var resulta = $("#orden").attr("value");
-                    $.post("svOrdenGalImagene.php", {
+                    $.post("svOrdenGalImagenes.php", {
                             orden: resulta
                         })
                         .done(function(data) {

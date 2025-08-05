@@ -1,93 +1,21 @@
 <?php
 include_once("includes/checkLogin.inc.php");
-include_once('includes/conexion.inc.php');
-include_once('includes/funciones.inc.php');
-//
-include_once('includes/class.inc.php');
+include_once('../config/classnew.inc.php');
+include_once('../config/conexion.inc.php');
+include_once('../config/funciones.inc.php');
 //
 $link = Conectarse();
+//
 $objContenido = new General();
 //
 
-if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) {
 
 
-    $condicion = 1;
-    $q = $_POST["buscar"]; //Recibo la consulta
-    $arrConsulta = explode(" ", $q); // 1 Separo palabras por el espacio
-    $arrayFinal = array(); // Defino array que contendrá las palabras que finalmente se cnsultarán
-    $preposiciones = array("con", "de", "desde", "en", "entre", "hacia", "para", "por", "según", "sin", "sobre", "tras", "el", "la", "los", "lo", "las", "y", "su"); // Defino las preposiciones que se filtrarán y no se buscarán
-    //2 Filtro las preposiciones. Si no están en las palabras a buscar, agrego estas a $arrayFinal
-    $arrayIndices = array(); // Defino array que contendrá las palabras que finalmente se cnsultarán
-    for ($i = 0; $i < count($arrConsulta); $i++) {
-        $valor = trim($arrConsulta[$i]);
-        if (!(in_array($valor, $preposiciones))) {
-            array_push($arrayFinal, $valor);
-        }
-    }
-    $largoFinal = count($arrayFinal); //Largo del array final
-
-
-
-    //Defino el array de indices
-
-
-    //$strbuscar = sanStrHtml($arrayFinal[0]);
-    for ($i = 0; $i < $largoFinal; $i++) {
-
-
-
-        //Título
-        $queryt = "SELECT *
-		          	FROM galerias g
-					WHERE MATCH(g.gal_nombre) AGAINST('" . $arrayFinal[$i] . "')
-					ORDER BY g.gal_publicada DESC,g.gal_nombre ASC,g.gal_id ASC";
-
-        $rsContt = $objContenido->getAllContenido($link, $queryt);
-        $intQtyt = $rsContt->rowCount();
-        if ($intQtyt > 0) {
-            while ($arrContenido = $rsContt->fetch(PDO::FETCH_BOTH)) {
-                if (!in_array($arrContenido["gal_id"], $arrayIndices)) {
-                    $arrayIndices[] = $arrContenido["gal_id"];
-                }
-            }
-        }
-    }
-
-
-    $intPage = 1;
-} else {
-
-    $query = "SELECT * FROM galerias p";
-    $rsCont = $objContenido->getAllContenido($link, $query);
-    //
-    if (isset($_GET["intPage"])) {
-        $intPage = $_GET["intPage"];
-    } else {
-        $intPage = "";
-    }
-    //
-    if ($intPage == "") {
-        $arrData[0] = 0;
-        $intPage = 1;
-    } else {
-        $arrData[0] = ((sanInt($_GET["intPage"]) - 1) * _CONST_PAGINADO_);
-        $intPage = sanInt($_GET["intPage"]);
-    }
-    //
-    $arrData[1] = _CONST_PAGINADO_;
-    //ALMACENO EL TOTAL DE REGISTROS
-    $intQtyRecords = $rsCont->rowCount();
-    //
-    //CALCULO EL TOTAL DE PAGINAS
-    $intQtyPages = ceil($intQtyRecords / _CONST_PAGINADO_);
-    //HAGO NUEVAMENTE LA CONSULTA PERO YA CON EL LIMIT SETEADO
-    $query = "SELECT *
-	FROM galerias p
-	ORDER BY p.gal_nombre ASC, p.gal_id DESC
-	LIMIT ?,?";
-    $rsCont = $objContenido->getAllContenidoPG($link, $arrData, $query);
-}
+$query = "SELECT *
+		FROM galerias
+		ORDER BY gal_publicada DESC,gal_nombre ASC";
+$rsCont = $objContenido->getAllContenido($link, $query);
+$intQtyRecords = $rsCont->rowCount();
 
 ?>
 <!DOCTYPE HTML>
@@ -109,6 +37,7 @@ if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
+    <link href="css/bootstrap-table.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
     <link href="css/estilos.css" rel="stylesheet">
 </head>
@@ -164,7 +93,25 @@ if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) {
                                         <input type="hidden" name="strDb" value="" />
                                         <input type="hidden" name="intPage" value="" />
                                         <input type="hidden" name="strOperacion" value="D" />
-                                        <table class="table table-striped">
+                                        <table id="table"
+                                            data-toggle="table"
+                                            data-search="true"
+                                            data-show-toggle="true"
+                                            data-show-fullscreen="true"
+                                            data-show-columns="true"
+                                            data-show-columns-toggle-all="true"
+                                            data-detail-view="false"
+                                            data-locale="es-AR"
+                                            data-show-export="true"
+                                            data-click-to-select="true"
+                                            data-show-columns="true"
+                                            data-show-pagination-switch="true"
+                                            data-pagination="true"
+                                            data-sortable="tue"
+                                            data-id-field="id"
+                                            data-page-list="[10, 25, 50, 100, all]"
+                                            data-show-footer="false"
+                                            class="table table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>Nombre</th>
@@ -254,16 +201,7 @@ if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) {
                     <?php } ?>
 
                 </div>
-                <!-- Paginación -->
-                <?php if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) { ?>
-
-                <?php } else { ?>
-                    <div class="row">
-                        <div class="col-lg-12 paginador">
-                            <?php echo printPaginado("lstGalerias.php", $intQtyPages, $intPage, "galerias"); ?>
-                        </div>
-                    </div>
-                <?php } ?>
+                
             </div>
             <div class="footer">
                 <div>&copy; 2014 - <?php echo date("Y") ?></div>
@@ -276,6 +214,12 @@ if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) {
     <script src="js/bootstrap.min.js"></script>
     <script src="js/plugins/metisMenu/jquery.metisMenu.js"></script>
     <script src="js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- Table -->
+    <script src="js/tableExport.min.js"></script>
+    <script src="js/bootstrap-table.js"></script>
+    <script src="js/bootstrap-table-locale-all.js"></script>
+    <script src="js/extensions/export/bootstrap-table-export.min.js"></script>
 
     <!-- Custom and plugin javascript -->
     <script src="js/inspinia.js"></script>

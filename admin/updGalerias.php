@@ -1,31 +1,28 @@
 <?php
 include_once("includes/checkLogin.inc.php");
-include_once('includes/conexion.inc.php');
-include_once('includes/funciones.inc.php');
-//
-include_once('includes/class.inc.php');
+include_once('../config/classnew.inc.php');
+include_once('../config/conexion.inc.php');
+include_once('../config/funciones.inc.php');
 //
 $link = Conectarse();
 //
-$intIdCont[0] = 0;
-$intIdCont[1] = sanInt($_GET["id"]);
-//
-$intPage = sanInt($_GET["intPage"]);
+$intIdCont = $_GET["id"];
 //
 $objContenido = new General();
 //Seleciona la propiedad
-$query = "SELECT * 
-          FROM galerias WHERE gal_id = ?";
-$rsCont = $objContenido->getOneContenido($link, $intIdCont, $query);
+
+$arrData = [['value'=> $intIdCont,'tipo'=> 'NU']];
+$query = "SELECT * FROM galerias WHERE gal_id = ?";
+$rsCont = $objContenido->getOneContenido($link,$arrData,$query);
 $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
 
 
 // Imagenes
-$queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = '" . $intIdCont[1] . "' ORDER BY gxi_posicion ASC, gxi_id ASC";
-$rsImag = $objContenido->getAllContenido($link, $queryImag);
+$queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = ? ORDER BY gxi_posicion ASC, gxi_id ASC";
+$rsImag = $objContenido->getOneContenido($link,$arrData,$queryImag);
 
-$queryImag2 = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = '" . $intIdCont[1] . "' ORDER BY gxi_posicion ASC, gxi_id ASC";
-$rsImag2 = $objContenido->getAllContenido($link, $queryImag2);
+$queryImag2 = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = ? ORDER BY gxi_posicion ASC, gxi_id ASC";
+$rsImag2 = $objContenido->getOneContenido($link,$arrData,$queryImag2);
 $intQtyRecordsImag2 = $rsImag2->rowCount();
 $arrImagen2 = $rsImag2->fetch(PDO::FETCH_BOTH);
 
@@ -100,10 +97,9 @@ $arrImagen2 = $rsImag2->fetch(PDO::FETCH_BOTH);
                             <div class="ibox-content">
                                 <form action="svGalerias.php" method="post" enctype="multipart/form-data" name="form1">
                                     <input type="hidden" name="strOperacion" value="U" />
-                                    <input name="id" type="hidden" id="id" value="<?php echo $intIdCont[1] ?>">
+                                    <input name="id" type="hidden" id="id" value="<?php echo $intIdCont ?>">
                                     <input type="hidden" name="intPage" value="<?php echo $intPage ?>" />
 
-                                    <input type="hidden" name="fecha" value="<?php echo $arrCont["post_fecha"] ?>" />
 
                                
 
@@ -259,7 +255,7 @@ $arrImagen2 = $rsImag2->fetch(PDO::FETCH_BOTH);
         }
 
         /* Carga mediante AJAX de Imagenes en la galería */
-        var numeroRandom = <?php echo $intIdCont[1] ?>;
+        var numeroRandom = <?php echo $intIdCont ?>;
         <?php if ($intQtyRecordsImag2 > 0) { ?>
             var galeria = <?php echo $arrImagen2["gxi_id_gal"] ?>;
         <?php } else { ?>

@@ -7,3 +7,6 @@ assets/slides/*
 
 assets/obras/*
 !assets/obras/.gitignore
+
+assets/galerias/*
+!assets/galerias/.gitignore

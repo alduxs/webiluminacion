@@ -4,6 +4,7 @@
 /* Media query para tabletas */
 @media (min-width: 992px) {
   .header-home {
+    height: 75vh;
     .top-navigation {
       width: 960px;
       justify-content: space-evenly;
@@ -31,7 +32,7 @@
 
   .home-empresa {
     .servicios-contenedor {
-      @include grid(grid, 2fr 3fr 1fr);
+      @include grid(grid, 1fr 3fr 1fr);
       gap: 10px;
 
       .servicios-imagen {

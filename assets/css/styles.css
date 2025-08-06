@@ -206,8 +206,13 @@ body {
 .header-home .text-slide .highligth {
   font-size: 3.5rem;
   font-weight: 500;
-  margin-bottom: 15px;
+  margin-bottom: 0px;
   text-shadow: 0px 1px 12px rgba(255, 255, 255, 0.9);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .header-home .text-slide .details {
   background-color: #fcfcfc;
@@ -219,7 +224,6 @@ body {
 
 .header-int {
   height: 500px;
-  background-image: url("../slides/slide-home.jpg");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -325,7 +329,7 @@ footer #map {
 }
 .home-obras h1 {
   font-size: 2.5rem;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   text-transform: uppercase;
 }
 .home-obras .obra-item {
@@ -361,8 +365,8 @@ footer #map {
   color: #fff;
   font-size: 1.5rem;
   background-color: #fdcf00;
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -412,7 +416,7 @@ footer #map {
 }
 .home-empresa .servicios-contenedor .servicios-texto {
   background-color: #fff;
-  padding: 25px;
+  padding: 45px;
   width: 100%;
 }
 .home-empresa .servicios-contenedor .servicios-imagen {
@@ -441,7 +445,7 @@ footer #map {
 }
 .home-empresa .empresa-contenedor .empresa-texto {
   background-color: #fff;
-  padding: 25px;
+  padding: 45px;
   width: 100%;
 }
 .home-empresa .empresa-contenedor .servicios-imagen {
@@ -453,7 +457,7 @@ footer #map {
 }
 .int-obras h1 {
   font-size: 3rem;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 .int-obras .obra-item {
   margin-bottom: 30px;
@@ -488,8 +492,8 @@ footer #map {
   color: #fff;
   font-size: 1.5rem;
   background-color: #fdcf00;
-  height: 30px;
-  width: 30px;
+  height: 50px;
+  width: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -661,7 +665,7 @@ footer #map {
   }
   .home-empresa .empresa-contenedor {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 3fr 1fr;
   }
   .home-empresa .empresa-contenedor .titulo-empresa,
   .home-empresa .empresa-contenedor .titulo-empresa2 {
@@ -711,6 +715,9 @@ footer #map {
 /* Font colors */
 /* Media query para tabletas */
 @media (min-width: 992px) {
+  .header-home {
+    height: 75vh;
+  }
   .header-home .top-navigation {
     width: 960px;
     justify-content: space-evenly;
@@ -735,7 +742,7 @@ footer #map {
   }
   .home-empresa .servicios-contenedor {
     display: grid;
-    grid-template-columns: 2fr 3fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr;
     gap: 10px;
   }
   .home-empresa .servicios-contenedor .servicios-imagen {

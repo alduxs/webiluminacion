@@ -2,6 +2,24 @@
 include_once('config/conexion.inc.php');
 include_once('config/funciones.inc.php');
 include_once('config/classnew.inc.php');
+//
+$link = Conectarse();
+//
+$objContenido = new General();
+//
+$intIdCont = $_GET["id"];
+//
+$arrData = [['value'=> $intIdCont,'tipo'=> 'NU']];
+$query = "SELECT * FROM obras WHERE obra_id = ?";
+$rsCont = $objContenido->getOneContenido($link,$arrData,$query);
+$arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
+//IMAGEN DETACADA
+$queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
+$rsImag = $objContenido->getAllContenido($link, $queryImag);
+$arrImag = $rsImag->fetch(PDO::FETCH_BOTH);
+//TODAS LAS IMAGENES DETACADA
+$queryImagAll = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 1,200";
+$rsImag = $objContenido->getAllContenido($link, $queryImagAll);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,35 +48,9 @@ include_once('config/classnew.inc.php');
 
     <div class="velo" id="velo"></div>
 
-    <header class="header-int">
+    <header class="header-int" style="background-image: url('../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>');">
 
-        <div class="top-navigation">
-            <div class="logo"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></div>
-
-            <nav class="menu" id="menu">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Obras</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Empresa</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="btn11" data-menu="11" id="bt-hamburger">
-                <div class="icon-left"></div>
-                <div class="icon-right"></div>
-            </div>
-
-            <div class="redes-top">
-                <ul>
-                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                </ul>
-            </div>
-
-        </div>
-
+        <?php include_once('includes/top-navigation-int-obra.php'); ?>
 
     </header>
 
@@ -69,8 +61,8 @@ include_once('config/classnew.inc.php');
                 <!-- Titulo -->
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-                        <h1>Centro de justicia penal</h1>
-                        <h2>Rosario</h2>
+                        <h1><?php echo $arrCont["obra_nombre"];?></h1>
+                        <h2><?php echo $arrCont["obra_localidad"];?></h2>
                     </div>
                 </div>
 
@@ -81,7 +73,7 @@ include_once('config/classnew.inc.php');
                     <!-- Obra Item -->
                     <div class="col-md-10 offset-md-1">
                         <div class="imagenes">
-                            <div class="imagen-pincipal" style="background-image: url('assets/obras/obra-test-02.jpg');">
+                            <div class="imagen-pincipal" style="background-image: url('../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>');">
                                 <div class="lupa"><i class="fa-solid fa-magnifying-glass"></i></div>
                             </div>
                             <div class="imagen-thumbs">
@@ -101,7 +93,7 @@ include_once('config/classnew.inc.php');
                     <!-- Fin Obra Item -->
 
                     <div class="col-md-10 offset-md-1">
-                        <p class="texto-obra">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam perferendis aliquam, maxime recusandae culpa ipsam quos consequatur pariatur eaque tempora in sequi non. Eligendi vitae libero perferendis velit incidunt explicabo?.</p>
+                        <p class="texto-obra"><?php echo $arrCont["obra_localidad"];?></p>
                     </div>
 
 

@@ -81,127 +81,75 @@ $intQtyRecords = $rsCont->rowCount();
             <div class="wrapper wrapper-content animated fadeInRight">
                 <div class="row">
 
-                    <?php if (isset($_POST["buscar"]) && $_POST["buscar"] != NULL) { ?>
 
 
 
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <form name="frm" method="post" action="svGalerias.php">
-                                        <input type="hidden" name="intIdRegistro" value="" />
-                                        <input type="hidden" name="strDb" value="" />
-                                        <input type="hidden" name="intPage" value="" />
-                                        <input type="hidden" name="strOperacion" value="D" />
-                                        <table id="table"
-                                            data-toggle="table"
-                                            data-search="true"
-                                            data-show-toggle="true"
-                                            data-show-fullscreen="true"
-                                            data-show-columns="true"
-                                            data-show-columns-toggle-all="true"
-                                            data-detail-view="false"
-                                            data-locale="es-AR"
-                                            data-show-export="true"
-                                            data-click-to-select="true"
-                                            data-show-columns="true"
-                                            data-show-pagination-switch="true"
-                                            data-pagination="true"
-                                            data-sortable="tue"
-                                            data-id-field="id"
-                                            data-page-list="[10, 25, 50, 100, all]"
-                                            data-show-footer="false"
-                                            class="table table-striped">
-                                            <thead>
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="ibox-content">
+                                <form name="frm" method="post" action="svGalerias.php">
+                                    <input type="hidden" name="intIdRegistro" value="" />
+                                    <input type="hidden" name="strDb" value="" />
+                                    <input type="hidden" name="strOperacion" value="D" />
+                                    <table id="table"
+                                        data-toggle="table"
+                                        data-search="true"
+                                        data-show-toggle="true"
+                                        data-show-fullscreen="true"
+                                        data-show-columns="true"
+                                        data-show-columns-toggle-all="true"
+                                        data-detail-view="false"
+                                        data-locale="es-AR"
+                                        data-show-export="true"
+                                        data-click-to-select="true"
+                                        data-show-columns="true"
+                                        data-show-pagination-switch="true"
+                                        data-pagination="true"
+                                        data-sortable="tue"
+                                        data-id-field="id"
+                                        data-page-list="[10, 25, 50, 100, all]"
+                                        data-show-footer="false"
+                                        class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Nombre</th>
+                                                <th>Publicada</th>
+                                                <th>Acciones</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php $intCounter = 0; ?>
+                                            <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
                                                 <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Publicada</th>
-                                                    <th>Acciones</th>
+
+                                                    <td><?php echo $arrContenido["gal_id"]; ?></td>
+                                                    <td><?php echo $arrContenido["gal_nombre"]; ?></td>
+
+
+
+                                                    <td><?php if ($arrContenido["gal_publicada"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
+
+
+
+                                                    <td class="tooltip-demo">
+                                                        <a href="updGalerias.php?seccion=galerias&id=<?php echo $arrContenido["gal_id"]; ?>" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></a>
+                                                        <a href="javascript:;" onclick="delRegistro('<?php echo $arrContenido["gal_id"] ?>','','galerias');" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar"><i class="fa fa-trash-o"></i></a>
+                                                    </td>
                                                 </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $intCounter = 0; ?>
-                                                <?php if (count($arrayIndices) > 0) { ?>
-                                                    <?php for ($i = 0; $i < count($arrayIndices); $i++) {
-                                                        $query = "SELECT *
-																	FROM galerias g
-																	WHERE g.gal_id = " . $arrayIndices[$i];
-                                                        $rsCont = $objContenido->getAllContenido($link, $query);
-                                                        $arrContenido = $rsCont->fetch(PDO::FETCH_BOTH);
-                                                    ?>
-
-                                                        <tr>
-                                                            <td><?php echo $arrContenido["gal_nombre"]; ?></td>
-                                                            <td><?php if ($arrContenido["gal_publicada"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
-
-                                                            <td class="tooltip-demo">
-                                                                <a href="updGalerias.php?seccion=galerias&id=<?php echo $arrContenido["gal_id"]; ?>&intPage=<?php echo $intPage ?>" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></a>
-                                                                <a href="javascript:;" onclick="delRegistro('<?php echo $arrContenido["gal_id"] ?>','galerias',<?php echo $intPage ?>);" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar"><i class="fa fa-trash-o"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <?php $intCounter++; ?>
-                                                    <?php } ?>
-                                                <?php } else { ?>
-                                                    <tr>
-                                                        <td colspan="4">No hay registros para mostrar.</td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
+                                                <?php $intCounter++; ?>
+                                            <?php } ?>
+                                        </tbody>
+                                    </table>
+                                </form>
                             </div>
                         </div>
+                    </div>
 
-                    <?php } else { ?>
 
-                        <div class="col-lg-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
-                                    <form name="frm" method="post" action="svGalerias.php">
-                                        <input type="hidden" name="intIdRegistro" value="" />
-                                        <input type="hidden" name="strDb" value="" />
-                                        <input type="hidden" name="intPage" value="" />
-                                        <input type="hidden" name="strOperacion" value="D" />
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>Nombre</th>
-                                                    <th>Publicada</th>
-                                                    <th>Acciones</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php $intCounter = 0; ?>
-                                                <?php if ($intQtyRecords > 0) { ?>
-                                                    <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
-                                                        <tr>
-                                                            <td><?php echo $arrContenido["gal_nombre"]; ?></td>
-                                                            <td><?php if ($arrContenido["gal_publicada"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
-
-                                                            <td class="tooltip-demo">
-                                                                <a href="updGalerias.php?seccion=galerias&id=<?php echo $arrContenido["gal_id"]; ?>&intPage=<?php echo $intPage ?>" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></a>
-                                                                <a href="javascript:;" onclick="delRegistro('<?php echo $arrContenido["gal_id"] ?>','galerias',<?php echo $intPage ?>);" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar"><i class="fa fa-trash-o"></i></a>
-                                                            </td>
-                                                        </tr>
-                                                        <?php $intCounter++; ?>
-                                                    <?php } ?>
-                                                <?php } else { ?>
-                                                    <tr>
-                                                        <td colspan="4">No hay registros para mostrar.</td>
-                                                    </tr>
-                                                <?php } ?>
-                                            </tbody>
-                                        </table>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                    <?php } ?>
 
                 </div>
-                
+
             </div>
             <div class="footer">
                 <div>&copy; 2014 - <?php echo date("Y") ?></div>
@@ -225,13 +173,12 @@ $intQtyRecords = $rsCont->rowCount();
     <script src="js/inspinia.js"></script>
     <script src="js/plugins/pace/pace.min.js"></script>
     <script type="text/javascript">
-        function delRegistro(pIdRegistro, strDb, intPage) {
+        function delRegistro(pIdRegistro, strDb) {
             if (!window.confirm("Esta seguro que desea borrar este registro?")) {
                 return;
             } else {
                 document.frm.intIdRegistro.value = pIdRegistro;
                 document.frm.strDb.value = strDb;
-                document.frm.intPage.value = intPage;
                 document.frm.submit();
             }
         }

@@ -72,7 +72,7 @@ $objContenido = new General();
           <div class="col-lg-12">
             <div class="ibox float-e-margins">
               <div class="ibox-content">
-                <form method="post" action="svPropiedad.php" enctype="multipart/form-data" name="form1">
+                <form method="post" action="svObras.php" enctype="multipart/form-data" name="form1">
                   <input type="hidden" name="strOperacion" value="I" />
                   <input type="hidden" name="idusuario" value="<?php echo $_SESSION["id"]; ?>">
 
@@ -114,6 +114,23 @@ $objContenido = new General();
                     <p><label class="checkbox-inline i-checks"> <input type="radio" value="1" name="destacada" checked> <i></i> Si </label><label class="checkbox-inline i-checks"> <input name="destacada" type="radio" value="0"> <i></i> No </label></p>
                   </div>
                   <div class="hr-line-dashed col-xs-12"></div>
+
+                   <!-- Galerías -->
+                      <div class="form-group col-xs-12">
+                        <label for="galeria">Galería</label>
+                        <select name="galeria" class="select2_demo_3 form-control" id="galeria">
+
+                          <option></option>
+                          <?php
+                          $query = "SELECT * FROM galerias WHERE gal_publicada = 1";
+                          $rsCont = $objContenido->getAllContenido($link, $query);
+                          ?>
+                          <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
+                            <option value="<?php echo $arrContenido["gal_id"] ?>"><?php echo $arrContenido["gal_nombre"] ?></option>
+                          <?php } ?>
+                        </select>
+                      </div>
+                      <div class="hr-line-dashed col-xs-12"></div>
 
 
                   <div class="form-group text-center">

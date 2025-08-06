@@ -99,7 +99,7 @@
       }
     }
     .empresa-contenedor {
-      @include grid(grid, 2fr 1fr);
+      @include grid(grid, 3fr 1fr);
 
       .titulo-empresa,
       .titulo-empresa2 {

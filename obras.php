@@ -2,6 +2,16 @@
 include_once('config/conexion.inc.php');
 include_once('config/funciones.inc.php');
 include_once('config/classnew.inc.php');
+//
+$link = Conectarse();
+//
+$objContenido = new General();
+//
+$query = "SELECT * FROM obras
+          WHERE obra_publicada = 1
+          ORDER BY obra_orden ASC,obra_nombre ASC";
+$rsCont = $objContenido->getAllContenido($link, $query);
+$intQtyRecords = $rsCont->rowCount();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,35 +40,9 @@ include_once('config/classnew.inc.php');
 
     <div class="velo" id="velo"></div>
 
-    <header class="header-int">
+    <header class="header-int" style="background-image: url('assets/slides/slide-home.jpg');">
 
-        <div class="top-navigation">
-            <div class="logo"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></div>
-
-            <nav class="menu" id="menu">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Obras</a></li>
-                    <li><a href="#">Servicios</a></li>
-                    <li><a href="#">Empresa</a></li>
-                    <li><a href="#">Contacto</a></li>
-                </ul>
-            </nav>
-
-            <div class="btn11" data-menu="11" id="bt-hamburger">
-                <div class="icon-left"></div>
-                <div class="icon-right"></div>
-            </div>
-
-            <div class="redes-top">
-                <ul>
-                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
-                </ul>
-            </div>
-
-        </div>
-
+        <?php include_once('includes/top-navigation-int.php'); ?>
 
     </header>
 
@@ -77,69 +61,33 @@ include_once('config/classnew.inc.php');
 
                 <div class="row">
 
-                    <!-- Obra Item -->
-                    <div class="col-12 col-md-6">
-                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2>Centro de justicia penal</h2>
-                                    <p class="localidad">Rosario</p>
-                                </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fin Obra Item -->
+                    <?php $intCounter = 0; ?>
+                    <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
+                        <?php
+                        $queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrContenido["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
+                        $rsImag = $objContenido->getAllContenido($link, $queryImag);
+                        $arrImag = $rsImag->fetch(PDO::FETCH_BOTH);
+                        ?>
 
-                    <!-- Obra Item -->
-                    <div class="col-12 col-md-6">
-                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2>Centro de justicia penal</h2>
-                                    <p class="localidad">Rosario</p>
+                        <!-- Obra Item -->
+                        <div class="col-12 col-md-6">
+                            <div class="obra-item" style="background-image: url('assets/galerias/med/<?php echo $arrImag["gxi_imagen"]; ?>');">
+                                <div class="obra-infomation">
+                                    <div class="obra-lead">
+                                        <h2><?php echo $arrContenido["obra_nombre"]; ?></h2>
+                                        <p class="localidad"><?php echo $arrContenido["obra_localidad"]; ?></p>
+                                    </div>
+                                    <div></div>
+                                    <div></div>
+                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"];?>/<?php echo buildLink($arrContenido["obra_nombre"]);?>"><i class="fa-solid fa-angle-right"></i></a></div>
                                 </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
                             </div>
                         </div>
-                    </div>
-                    <!-- Fin Obra Item -->
+                        <!-- Fin Obra Item -->
+                        <?php $intCounter++; ?>
+                    <?php } ?>
 
-                    <!-- Obra Item -->
-                    <div class="col-12 col-md-6">
-                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2>Centro de justicia penal</h2>
-                                    <p class="localidad">Rosario</p>
-                                </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fin Obra Item -->
 
-                    <!-- Obra Item -->
-                    <div class="col-12 col-md-6">
-                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2>Centro de justicia penal</h2>
-                                    <p class="localidad">Rosario</p>
-                                </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Fin Obra Item -->
 
                 </div>
                 <!-- Fin Obras -->

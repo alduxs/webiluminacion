@@ -2,7 +2,7 @@
   padding: 80px 20px;
   h1 {
     font-size: 2.5rem;
-    margin-bottom: 30px;
+    margin-bottom: 50px;
     text-transform: uppercase;
   }
   .obra-item {
@@ -39,8 +39,8 @@
                 color: $font-tertiary-color;
                 font-size: 1.5rem;
                 background-color: $bg-tertiary-color;
-                height: 30px;
-                width: 30px;
+                height: 50px;
+                width: 50px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -91,7 +91,7 @@
         }
         .servicios-texto{
             background-color: $bg-white-color;
-            padding: 25px;
+            padding: 45px;
             width: 100%;
         }
         .servicios-imagen{
@@ -119,7 +119,7 @@
         }
         .empresa-texto{
             background-color: $bg-white-color;
-            padding: 25px;
+            padding: 45px;
             width: 100%;
         }
         .servicios-imagen{

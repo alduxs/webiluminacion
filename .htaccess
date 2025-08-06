@@ -1,0 +1,20 @@
+AddDefaultCharset UTF-8
+#----------------------------
+RewriteEngine On
+#RewriteCond %{HTTPS} off
+#RewriteCond %{HTTP_HOST} ^(www\.)?aposgran\.org\.ar
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L,QSA]
+
+#RewriteCond %{HTTP_HOST} ^www.aposgran.org.ar$ [NC]
+#RewriteRule ^(.*)$ "https://aposgran.org.ar/$1" [R=301,L]
+
+#----------------------------
+
+Rewriterule ^/?$ index.php [QSA,L]
+
+
+#--------------------------------------
+#Programas
+Rewriterule ^obras/?$ obras.php [QSA,L]
+Rewriterule ^obras/([^/|^.]+)/([^/|^.]+)/?$ una-obras.php?id=$1 [QSA,L]
+

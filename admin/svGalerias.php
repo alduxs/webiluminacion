@@ -12,11 +12,6 @@ $strOperacion = $objContenido->dataCleaner($_POST["strOperacion"], 'AN');
 //
 $Uploads = new Archivo();
 //
-if (isset($_POST["intPage"])) {
-  $intPage = $_POST["intPage"];
-} else {
-  $intPage = 1;
-}
 //
 switch ($strOperacion) {
   case 'I':
@@ -94,7 +89,6 @@ switch ($strOperacion) {
 
         $query = "DELETE FROM galeriasximag WHERE gxi_id = ".$arrContenido["gxi_id"];
         $rsCont = $objContenido->getAllContenido($link,$query);
-
       }
     }
 
@@ -103,5 +97,5 @@ switch ($strOperacion) {
     //
     break;
 }
-//
-header("Location: lstGalerias.php?seccion=galerias&intPage=$intPage");
+header("Location: lstGalerias.php?seccion=galerias");
+?>

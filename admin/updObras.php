@@ -9,11 +9,9 @@ $link = Conectarse();
 $objContenido = new General();
 //
 $intIdCont = $_GET["id"];
-//
-$intPage = $_GET["intPage"];
-//
+////
 $arrData = [['value'=> $intIdCont,'tipo'=> 'NU']];
-$query = "SELECT * FROM propiedades WHERE id = ?";
+$query = "SELECT * FROM obras WHERE obra_id = ?";
 $rsCont = $objContenido->getOneContenido($link,$arrData,$query);
 $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
 //
@@ -74,73 +72,28 @@ $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
           <div class="col-lg-12">
             <div class="ibox float-e-margins">
               <div class="ibox-content">
-                <form action="svPropiedad.php" method="post" enctype="multipart/form-data" name="form1">
+                <form action="svObras.php" method="post" enctype="multipart/form-data" name="form1">
                   <input type="hidden" name="strOperacion" value="U" />
                   <input name="id" type="hidden" id="id" value="<?php echo $intIdCont ?>">
-                  <input type="hidden" name="intPage" value="<?php echo $intPage ?>" />
 
                   <!-- Título -->
                   <div class="form-group col-xs-12">
-                    <label for="idpropiedad">ID Propiedad</label>
-                    <input type="text" name="idpropiedad" id="idpropiedad" class="form-control" value="<?php echo $arrCont["prop_id"] ?>">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" value="<?php echo $arrCont["obra_nombre"] ?>">
                   </div>
                   <div class="hr-line-dashed col-xs-12"></div>
 
-                  <!-- Tipo de Propiedad -->
-                  <div class="form-group col-xs-6">
-                    <label for="tipopropiedad">Tipo de Propiedad</label>
-                    <select name="tipopropiedad" class="select2_demo_3 form-control" id="tipopropiedad">
-
-                      <option value="0">Selecionar tipo de propiedad</option>
-                      <?php
-                      $queryPost = "SELECT * FROM tipo_propiedad ORDER BY id ASC";
-                      $rsPost = $objContenido->getAllContenido($link, $queryPost);
-                      ?>
-                      <?php while ($arrPost = $rsPost->fetch(PDO::FETCH_BOTH)) { ?>
-                        <option value="<?php echo $arrPost["id"] ?>" <?php if ($arrPost["id"] == $arrCont["prop_tipo"]) { ?>selected<?php } ?>><?php echo $arrPost["tipo_prop_desc"] ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-
-
-                  <!-- Zona -->
-                  <div class="form-group col-xs-6">
-                    <label for="zona">Zona</label>
-                    <select name="zona" class="select2_demo_3 form-control" id="zona">
-
-                      <option value="0">Selecionar zona</option>
-                      <?php
-                      $queryPost = "SELECT * FROM zonas ORDER BY zona_id ASC";
-                      $rsPost = $objContenido->getAllContenido($link, $queryPost);
-                      ?>
-                      <?php while ($arrPost = $rsPost->fetch(PDO::FETCH_BOTH)) { ?>
-                        <option value="<?php echo $arrPost["zona_id"] ?>" <?php if ($arrPost["zona_id"] == $arrCont["prop_zona"]) { ?>selected<?php } ?>><?php echo $arrPost["zona_desc"] ?></option>
-                      <?php } ?>
-                    </select>
-                  </div>
-                  <div class="hr-line-dashed col-xs-12"></div>
-
-                  <!-- Metros Cuadrados -->
-                  <div class="form-group col-xs-6">
-                    <label for="mcuadrados">Metros Cuadrados</label>
-                    <input type="text" name="mcuadrados" id="mcuadrados" class="form-control input-cl" placeholder="Ingrese los metros cuadrados con dos decimales (ej. 1234,56)" value="<?php echo number_format($arrCont["prop_mt2"], 2, ',', '') ?>">
-                    <p id="errorMessage1" style="color: red;" class="input-error"></p>
-                  </div>
-
-                  <!-- Valor Metro Cuadrado -->
-                  <div class="form-group col-xs-6">
-                    <label for="valormcuadrados">Valor del Metro Cuadrado</label>
-                    <input type="text" name="valormcuadrados" id="valormcuadrados" class="form-control input-cl" placeholder="Ingrese el valor de los metros cuadrados con dos decimales (ej. 1234,56)" value="<?php echo number_format($arrCont["prop_valor_mt2"], 2, ',', '') ?>">
-                    <p id="errorMessage2" style="color: red;" class="input-error"></p>
-                  </div>
-
-                  <div class="hr-line-dashed col-xs-12"></div>
-
-                  <!-- Valor Propiedad -->
+                  <!-- Localidad -->
                   <div class="form-group col-xs-12">
-                    <label for="valorpropiedad">Valor de la Propiedad</label>
-                    <input type="text" name="valorpropiedad" id="valorpropiedad" class="form-control input-cl" placeholder="Ingrese el valor de la propiedad con dos decimales (ej. 1234,56)" value="<?php echo number_format($arrCont["prop_valor"], 2, ',', '') ?>">
-                    <p id="errorMessage3" style="color: red;" class="input-error"></p>
+                    <label for="localidad">Localidad</label>
+                    <input type="text" name="localidad" id="localidad" class="form-control" value="<?php echo $arrCont["obra_localidad"] ?>">
+                  </div>
+                  <div class="hr-line-dashed col-xs-12"></div>
+
+                  <!-- Descripción -->
+                  <div class="form-group col-xs-12">
+                    <label for="descripcion">Descripción</label>
+                    <textarea name="descripcion" rows="12" id="descripcion" class="form-control"><?php echo $arrCont["obra_desc"] ?></textarea>
                   </div>
 
                   <div class="hr-line-dashed col-xs-12"></div>
@@ -148,9 +101,36 @@ $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
                   <!-- Publicado -->
                   <div class="form-group col-xs-12">
                     <label for="publicada">Publicada</label>
-                    <p><label class="checkbox-inline i-checks"> <input type="radio" value="1" name="publicada" <?php if (!(strcmp($arrCont["prop_publicada"], 1))) {echo "checked=\"checked\"";} ?>> <i></i> Si </label><label class="checkbox-inline i-checks"> <input name="publicada" type="radio" value="0" <?php if (!(strcmp($arrCont["prop_publicada"], 0))) {echo "checked=\"checked\"";} ?>> <i></i> No </label></p>
+                    <p><label class="checkbox-inline i-checks"> <input type="radio" value="1" name="publicada" <?php if (!(strcmp($arrCont["obra_publicada"], 1))) {echo "checked=\"checked\"";} ?>> <i></i> Si </label><label class="checkbox-inline i-checks"> <input name="publicada" type="radio" value="0" <?php if (!(strcmp($arrCont["obra_publicada"], 0))) {echo "checked=\"checked\"";} ?>> <i></i> No </label></p>
                   </div>
                   <div class="hr-line-dashed col-xs-12"></div>
+
+                   <!-- Destacada -->
+                  <div class="form-group col-xs-12">
+                    <label for="destacada">Destacada</label>
+                    <p><label class="checkbox-inline i-checks"> <input type="radio" value="1" name="destacada" <?php if (!(strcmp($arrCont["obra_dest"], 1))) {echo "checked=\"checked\"";} ?>> <i></i> Si </label><label class="checkbox-inline i-checks"> <input name="destacada" type="radio" value="0" <?php if (!(strcmp($arrCont["obra_dest"], 0))) {echo "checked=\"checked\"";} ?>> <i></i> No </label></p>
+                  </div>
+                  <div class="hr-line-dashed col-xs-12"></div>
+
+                  <!-- Galerías -->
+                  <div class="form-group col-xs-12">
+                    <label for="galeria">Galería</label>
+                    <select name="galeria" class="select2_demo_3 form-control" id="galeria">
+
+                      <option></option>
+                      <?php
+                      $query = "SELECT * FROM galerias WHERE gal_publicada = 1";
+                      $rsCont = $objContenido->getAllContenido($link, $query);
+                      ?>
+                      <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
+                        <option value="<?php echo $arrContenido["gal_id"] ?>" <?php if ($arrContenido["gal_id"] == $arrCont["obras_galeria"]) { ?>selected<?php } ?>><?php echo $arrContenido["gal_nombre"] ?></option>
+                      <?php } ?>
+                    </select>
+                  </div>
+                  <div class="hr-line-dashed col-xs-12"></div>
+
+
+                  
 
 
                   <div class="form-group text-center">
@@ -195,6 +175,29 @@ $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
         radioClass: 'iradio_square-green',
       });
 
+
+    });
+
+    tinymce.init({
+      selector: "textarea",
+      theme: "modern",
+      plugins: [
+        'advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker',
+        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+        'save table contextmenu directionality emoticons template paste textcolor'
+      ],
+      toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons',
+      image_advtab: true,
+      relative_urls: false,
+      content_css: '/labsonew/admin/css/css.css',
+      style_formats: [
+
+        {
+          title: 'Imagen Derecha',
+          selector: 'p',
+          classes: 'imgpost'
+        }
+      ],
 
     });
 

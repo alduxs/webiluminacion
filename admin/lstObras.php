@@ -8,36 +8,13 @@ $link = Conectarse();
 //
 $objContenido = new General();
 //
-$query = "SELECT * FROM propiedades";
-$rsCont = $objContenido->getAllContenido($link,$query);
-//
-if (isset($_GET["intPage"])) {
-	$intPage = $_GET["intPage"];
-} else {
-	$intPage="";
-}
-//
-if ($intPage == "") {
-	$arrData2[0] = ['value'=> 0,'tipo'=> 'NU'];
-	$intPage = 1;
-} else {
-	$arrData2[0] = ['value'=> (($_GET["intPage"] - 1) * _CONST_PAGINADO_),'tipo'=> 'NU']; ;
-	$intPage = $objContenido->dataCleaner($_GET["intPage"],'NU');
-}
-$arrData2[1] = ['value'=> _CONST_PAGINADO_,'tipo'=> 'NU'];
-//ALMACENO EL TOTAL DE REGISTROS
-$intQtyRecords = $rsCont->rowCount();
-//CALCULO EL TOTAL DE PAGINAS
-$intQtyPages = ceil($intQtyRecords / _CONST_PAGINADO_);
-//
 //HAGO NUEVAMENTE LA CONSULTA PERO YA CON EL LIMIT SETEADO
-$query = "SELECT p.*,tp.tipo_prop_desc,z.zona_desc
-		FROM propiedades p
-		LEFT JOIN tipo_propiedad tp ON p.prop_tipo = tp.id
-		LEFT JOIN zonas z ON p.prop_zona = z.zona_id
-		ORDER BY prop_id ASC,prop_tipo ASC, prop_zona ASC LIMIT ?,?";
-$rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
-
+$query = "SELECT *
+		FROM obras p
+		
+		ORDER BY obra_publicada DESC,obra_dest DESC, obra_orden ASC";
+$rsCont = $objContenido->getAllContenido($link,$query);
+$intQtyRecords = $rsCont->rowCount();
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -91,7 +68,7 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 					<div class="col-lg-12">
 						<div class="ibox float-e-margins">
 							<div class="ibox-content">
-								<form name="frm" method="post" action="svPropiedad.php">
+								<form name="frm" method="post" action="svObras.php">
 									<input type="hidden" name="intIdRegistro" value="" />
 									<input type="hidden" name="strDb" value="" />
 									<input type="hidden" name="Archivo" value="" />
@@ -119,12 +96,11 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>Tipo</th>
-                                                <th>Zona</th>	
-												<th>M2</th>
-												<th>Valor M2</th>
-												<th>Valor Propiedad</th>
-												<th>Publicada</th>											
+												<th>Nombre</th>
+                                                <th>Localidad</th>	
+												<th>Publicada</th>	
+												<th>Destacada</th>
+												<th>Orden</th>											
 												<th>Acción</th>
 											</tr>
 										</thead>
@@ -133,19 +109,17 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 											<?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
 												<tr>
 													
-													<td><?php echo $arrContenido["prop_id"]; ?></td>
-													<td><?php echo $arrContenido["tipo_prop_desc"]; ?></td>
-                                                    <td><?php echo $arrContenido["zona_desc"]; ?></td>
-													<td><?php echo number_format($arrContenido["prop_mt2"], 2, ',', '.'); ?></td>
-													<td>USD <?php echo number_format($arrContenido["prop_valor_mt2"], 2, ',', '.'); ?></td>
-													<td>USD <?php echo number_format($arrContenido["prop_valor"], 2, ',', '.');  ?></td>
-										
-
-													<td><?php if ($arrContenido["prop_publicada"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
+													<td><?php echo $arrContenido["obra_id"]; ?></td>
+													<td><?php echo $arrContenido["obra_nombre"]; ?></td>
+													<td><?php echo $arrContenido["obra_localidad"]; ?></td>
+													<td><?php if ($arrContenido["obra_publicada"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
+														
+													<td><?php if ($arrContenido["obra_dest"] == 0) { ?><a href="#" class="btn btn-default btn-circle"><i class="fa fa-check"></i></a><?php } else { ?><a href="#" class="btn btn-info btn-circle"><i class="fa fa-check"></i></a><?php } ?></td>
+													<td><?php echo $arrContenido["obra_orden"]; ?></td>
 													
 													<td class="tooltip-demo">
-														<a href="updPropiedad.php?seccion=propiedades&id=<?php echo $arrContenido["id"]; ?>&intPage=<?php echo $intPage ?>" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></a>
-														<a href="javascript:;" onclick="delRegistro('<?php echo $arrContenido["id"]?>','','propiedades',<?php echo $intPage ?>);" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar"><i class="fa fa-trash-o"></i></a>
+														<a href="updObras.php?seccion=propiedades&id=<?php echo $arrContenido["obra_id"]; ?>" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Editar"><i class="fa fa-pencil"></i></a>
+														<a href="javascript:;" onclick="delRegistro('<?php echo $arrContenido["obra_id"]?>','','propiedades');" class="btn btn-primary btn-bitbucket" data-toggle="tooltip" data-placement="bottom" title="Borrar"><i class="fa fa-trash-o"></i></a>
 													</td>
 												</tr>
 												<?php $intCounter++; ?>
@@ -158,11 +132,7 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 					</div>
 				</div>
 				<!-- Paginación -->
-				<div class="row">
-					<div class="col-lg-12 paginador">
-						<?php echo printPaginado("lstPropiedad.php", $intQtyPages, $intPage, "propiedades");?>
-					</div>
-				</div>
+				
 			</div>
 			<div class="footer">
 				<div>&copy; 2014 - <?php echo date ("Y") ?></div>
@@ -186,7 +156,7 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 	<script src="js/inspinia.js"></script>
 	<script src="js/plugins/pace/pace.min.js"></script>
 	<script type="text/javascript">
-	function delRegistro(pIdRegistro,pDsArchivo,strDb,intPage){
+	function delRegistro(pIdRegistro,pDsArchivo,strDb){
 		if (!window.confirm("Esta seguro que desea borrar este registro?")){
 			return;
 		}
@@ -194,7 +164,6 @@ $rsCont = $objContenido->getOneContenido($link,$arrData2,$query);
 			document.frm.intIdRegistro.value = pIdRegistro;
 			document.frm.strDb.value = strDb;
 			document.frm.Archivo.value = pDsArchivo;
-			document.frm.intPage.value = intPage;
 			document.frm.submit();
 		}
 	}

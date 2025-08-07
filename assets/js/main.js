@@ -3,6 +3,7 @@ let btnHamburger = document.getElementById("bt-hamburger");
 let menu = document.getElementById("menu");
 let velo = document.getElementById("velo");
 
+
 function initMap() {
   var styledMapType = new google.maps.StyledMapType([
     {
@@ -221,6 +222,5 @@ btnHamburger.addEventListener("click", function () {
   menu.classList.toggle("open-menu");
   this.classList.toggle("open");
 
-  
-
 });
+

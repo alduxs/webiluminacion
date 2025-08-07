@@ -11,7 +11,7 @@ $query = "SELECT * FROM obras
           WHERE obra_publicada = 1
           AND obra_dest = 1
           ORDER BY obra_orden ASC,obra_nombre ASC";
-$rsCont = $objContenido->getAllContenido($link,$query);
+$rsCont = $objContenido->getAllContenido($link, $query);
 $intQtyRecords = $rsCont->rowCount();
 ?>
 <!DOCTYPE html>
@@ -31,10 +31,20 @@ $intQtyRecords = $rsCont->rowCount();
     <!-- BOOTSTRAP CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.css" />
+
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/css/styles.css" />
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/fontawsome/css/all.css" />
+    <style>
+        #myCarousel {
+            --f-carousel-slide-height: 100%;
+            --f-carousel-spacing: 10px;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
@@ -43,17 +53,49 @@ $intQtyRecords = $rsCont->rowCount();
 
     <header class="header-home">
 
+        <div class="contenedor-slide" id="contenedor-slide">
+           
+            <div class="f-carousel" id="myCarousel">
+                <div class="f-carousel__viewport">
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide01.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide02.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide03.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide04.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide05.jpg');"></div>
+                </div>
+            </div>
+
+        </div>
+
+
+
         <?php include_once('includes/top-navigation.php'); ?>
 
         <div class="text-slide">
             <div class="container">
                 <div class="row">
                     <div class="col-12 col-md-6">
-                        <div class="highligth">Iluminacion</div>
+                        <div class="highligth" id="hl0">Proyecto y planificación</div>
+                        <div class="highligth" id="hl1" style="display: none;">Comercialización</div>
+                        <div class="highligth" id="hl2" style="display: none;">Fabricación</div>
+                        <div class="highligth" id="hl3" style="display: none;">Pruebas en Obra</div>
+                        <div class="highligth" id="hl4" style="display: none;">Distribución</div>
                     </div>
                     <div class="col-12 col-md-6">
-                        <div class="details">
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam aut in reprehenderit, quam veniam illum perferendis animi.</p>
+                        <div class="details" id="dt0">
+                            <p>Contamos con una estructura técnica con capacidad de desarrollo integral de proyectos de iluminación y planificación.</p>
+                        </div>
+                        <div class="details" id="dt1" style="display: none;">
+                            <p>Comercializamos una amplia gama de luminarias de marcas reconocidas, tanto nacionales como importadas.</p>
+                        </div>
+                        <div class="details" id="dt2" style="display: none;">
+                            <p>Diseñamos y fabricamos luminarias especiales y a medida, creando piezas únicas.</p>
+                        </div>
+                        <div class="details" id="dt3" style="display: none;">
+                            <p>Contamos con una sólida experiencia en prueba de luminarias en obras, para asegurar que cada solución de iluminación sea optima.</p>
+                        </div>
+                        <div class="details" id="dt4" style="display: none;">
+                            <p>Contamos con una logística de distribución que nos permite realizar envíos a cualquier punto del país.</p>
                         </div>
                     </div>
                 </div>
@@ -80,53 +122,33 @@ $intQtyRecords = $rsCont->rowCount();
 
 
                     <?php $intCounter = 0; ?>
-					<?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
-                    <?php
-                        $queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = ".$arrContenido["obras_galeria"]." ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
-                        $rsImag = $objContenido->getAllContenido($link,$queryImag);
+                    <?php while ($arrContenido = $rsCont->fetch(PDO::FETCH_BOTH)) { ?>
+                        <?php
+                        $queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrContenido["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
+                        $rsImag = $objContenido->getAllContenido($link, $queryImag);
                         $arrImag = $rsImag->fetch(PDO::FETCH_BOTH);
-                    ?>
-                    <div class="col-12 col-md-6">
-                        <!-- Obra Item -->
-                        <div class="obra-item" style="background-image: url('assets/galerias/med/<?php echo $arrImag["gxi_imagen"];?>');">
+                        ?>
+                        <div class="col-12 col-md-6">
+                            <!-- Obra Item -->
+                            <div class="obra-item" style="background-image: url('assets/galerias/med/<?php echo $arrImag["gxi_imagen"]; ?>');">
 
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2><?php echo $arrContenido["obra_nombre"];?></h2>
-                                    <p class="localidad"><?php echo $arrContenido["obra_localidad"];?></p>
+                                <div class="obra-infomation">
+                                    <div class="obra-lead">
+                                        <h2><?php echo $arrContenido["obra_nombre"]; ?></h2>
+                                        <p class="localidad"><?php echo $arrContenido["obra_localidad"]; ?></p>
+                                    </div>
+                                    <div></div>
+                                    <div></div>
+                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"]; ?>/<?php echo buildLink($arrContenido["obra_nombre"]); ?>"><i class="fa-solid fa-angle-right"></i></a></div>
                                 </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"];?>/<?php echo buildLink($arrContenido["obra_nombre"]);?>"><i class="fa-solid fa-angle-right"></i></a></div>
+
                             </div>
+                            <!-- Fin Obra Item -->
 
                         </div>
-                        <!-- Fin Obra Item -->
-
-                    </div>
-                    <?php $intCounter++; ?>
+                        <?php $intCounter++; ?>
                     <?php } ?>
 
-                    <!--
-                    <div class="col-12 col-md-6">
-                         Obra Item 
-                        <div class="obra-item" style="background-image: url('assets/obras/obra-test-01.jpg');">
-
-                            <div class="obra-infomation">
-                                <div class="obra-lead">
-                                    <h2>Centro de justicia penal</h2>
-                                    <p class="localidad">Rosario</p>
-                                </div>
-                                <div></div>
-                                <div></div>
-                                <div class="obra-flecha"><a href="#"><i class="fa-solid fa-angle-right"></i></a></div>
-                            </div>
-
-                        </div>
-                       
-
-                    </div>
-                     Fin Obra Item -->
 
                 </div>
                 <!-- Fin Obras -->
@@ -200,9 +222,17 @@ $intQtyRecords = $rsCont->rowCount();
     <!-- BOOTSTRAP JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Google maps -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCquBaspZ7KL1dj1s2B8cYsrUNUJXHAuYk&callback=initMap"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8_03r9LkKX7DqnHDYfv8lbyvWH7gadwM&callback=initMap"></script>
+    
+    
     <!-- Main -->
     <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.autoplay.umd.js"></script>
+    <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/slide.js"></script>
+
+    
+
 </body>
 
 </html>

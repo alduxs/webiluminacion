@@ -30,17 +30,41 @@ $intQtyRecords = $rsCont->rowCount();
     <!-- BOOTSTRAP CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.css" />
     <!-- CSS -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/css/styles.css" />
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/fontawsome/css/all.css" />
+    <!-- FANCYBOX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css" />
+    <style>
+        #myCarousel {
+            --f-carousel-slide-height: 100%;
+            --f-carousel-spacing: 10px;
+            height: 100%;
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="velo" id="velo"></div>
 
-    <header class="header-int" style="background-image: url('assets/slides/slide-home.jpg');">
+    <header class="header-int">
+
+        <div class="contenedor-slide" id="contenedor-slide">
+
+            <div class="f-carousel" id="myCarousel">
+                <div class="f-carousel__viewport">
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide01.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide02.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide03.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide04.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide05.jpg');"></div>
+                </div>
+            </div>
+
+        </div>
 
         <?php include_once('includes/top-navigation-int.php'); ?>
 
@@ -79,7 +103,7 @@ $intQtyRecords = $rsCont->rowCount();
                                     </div>
                                     <div></div>
                                     <div></div>
-                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"];?>/<?php echo buildLink($arrContenido["obra_nombre"]);?>"><i class="fa-solid fa-angle-right"></i></a></div>
+                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"]; ?>/<?php echo buildLink($arrContenido["obra_nombre"]); ?>"><i class="fa-solid fa-angle-right"></i></a></div>
                                 </div>
                             </div>
                         </div>
@@ -92,11 +116,13 @@ $intQtyRecords = $rsCont->rowCount();
                 </div>
                 <!-- Fin Obras -->
                 <!-- Mas Obras -->
+                 <!--
                 <div class="row">
                     <div class="col-12 text-end">
                         <div class="bt-mas-obras"><a href="#">Mas obras <i class="fa-solid fa-angle-right"></i></a></div>
                     </div>
                 </div>
+                    -->
                 <!-- Fin Mas Obras -->
 
             </div>
@@ -110,9 +136,14 @@ $intQtyRecords = $rsCont->rowCount();
     <!-- BOOTSTRAP JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Google maps -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCquBaspZ7KL1dj1s2B8cYsrUNUJXHAuYk&callback=initMap"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8_03r9LkKX7DqnHDYfv8lbyvWH7gadwM&callback=initMap"></script>
+    <!-- Fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js"></script>
     <!-- Main -->
     <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.autoplay.umd.js"></script>
+    <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/slideobras.js"></script>
 </body>
 
 </html>

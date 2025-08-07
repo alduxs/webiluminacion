@@ -1,18 +1,31 @@
 @import "../abstracts/mixins";
 .header-home {
   height: 95vh;
-  background-image: url("../slides/slide-home.jpg");
+  /*background-image: url("../slides/slide01.jpg");*/
   background-size: cover;
   background-position: center;
   position: relative;
   justify-items: center;
   display: grid;
   align-content: space-between;
+  .contenedor-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .top-navigation {
-    background-color: #fff;
+    background-color: $bg-white-color;
     padding: 10px 10px;
     width: 100%;
     @include grid(grid, 1fr 1fr 1fr);
+    position: relative;
+    z-index: 2050;
     .logo {
     }
     .menu {
@@ -102,18 +115,31 @@
 
 .header-int {
   height: 500px;
-  
+
   background-size: cover;
   background-position: center;
   position: relative;
   justify-items: center;
   display: grid;
   align-content: space-between;
+  .contenedor-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .top-navigation {
-    background-color: #fff;
+    background-color:$bg-white-color;
     padding: 10px 10px;
     width: 100%;
     @include grid(grid, 1fr 1fr 1fr);
+    position: relative;
+    z-index: 2050;
     .logo {
     }
     .menu {

@@ -126,7 +126,7 @@ body {
 /* Header */
 .header-home {
   height: 95vh;
-  background-image: url("../slides/slide-home.jpg");
+  /*background-image: url("../slides/slide01.jpg");*/
   background-size: cover;
   background-position: center;
   position: relative;
@@ -134,12 +134,25 @@ body {
   display: grid;
   align-content: space-between;
 }
+.header-home .contenedor-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header-home .top-navigation {
   background-color: #fff;
   padding: 10px 10px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  z-index: 2050;
 }
 .header-home .top-navigation .menu {
   background-color: #fff;
@@ -231,12 +244,25 @@ body {
   display: grid;
   align-content: space-between;
 }
+.header-int .contenedor-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .header-int .top-navigation {
   background-color: #fff;
   padding: 10px 10px;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  position: relative;
+  z-index: 2050;
 }
 .header-int .top-navigation .menu {
   background-color: #fff;
@@ -529,7 +555,7 @@ footer #map {
 .una-obras h2 {
   margin-bottom: 20px;
   font-size: 1.5rem;
-  font-weight: 600;
+  font-weight: 400;
   margin-bottom: 30px;
 }
 .una-obras .imagenes {
@@ -558,16 +584,20 @@ footer #map {
   font-size: 1.3rem;
   font-weight: 700;
 }
+.una-obras .imagenes .imagen-pincipal .lupa a {
+  color: #fff;
+  text-decoration: none;
+}
 .una-obras .imagenes .imagen-thumbs {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
 }
 .una-obras .imagenes .imagen-thumbs .imagen-thumb {
-  height: 80px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  cursor: pointer;
 }
 .una-obras .texto-obra {
   margin-top: 20px;
@@ -586,7 +616,6 @@ footer #map {
     display: none;
   }
   .header-home .top-navigation {
-    background-color: #fff;
     padding: 10px 12px;
     width: 100%;
     justify-content: space-evenly;
@@ -683,7 +712,7 @@ footer #map {
   .una-obras h2 {
     margin-bottom: 20px;
     font-size: 1.6rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 30px;
   }
   .una-obras .imagenes {
@@ -767,11 +796,10 @@ footer #map {
   }
   .una-obras .imagenes .imagen-thumbs {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 10px;
   }
   .una-obras .imagenes .imagen-thumbs .imagen-thumb {
-    height: 80px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

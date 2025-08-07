@@ -18,8 +18,8 @@ $queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obra
 $rsImag = $objContenido->getAllContenido($link, $queryImag);
 $arrImag = $rsImag->fetch(PDO::FETCH_BOTH);
 //TODAS LAS IMAGENES DETACADA
-$queryImagAll = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 1,200";
-$rsImag = $objContenido->getAllContenido($link, $queryImagAll);
+$queryImagAll = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC";
+$rsImagAll = $objContenido->getAllContenido($link, $queryImagAll);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +42,9 @@ $rsImag = $objContenido->getAllContenido($link, $queryImagAll);
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/css/styles.css" />
     <!-- FONTAWESOME -->
     <link rel="stylesheet" href="<?php echo _CONST_DOMINIO_ ?>assets/fontawsome/css/all.css" />
+    <!-- FANCYBOX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css" />
+    
 </head>
 
 <body>
@@ -73,19 +76,13 @@ $rsImag = $objContenido->getAllContenido($link, $queryImagAll);
                     <!-- Obra Item -->
                     <div class="col-md-10 offset-md-1">
                         <div class="imagenes">
-                            <div class="imagen-pincipal" style="background-image: url('../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>');">
-                                <div class="lupa"><i class="fa-solid fa-magnifying-glass"></i></div>
+                            <div class="imagen-pincipal" style="background-image: url('../../assets/galerias/med/<?php echo $arrImag["gxi_imagen"];?>');" id="imagen-principal">
+                                <div class="lupa"><a href="../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>" data-fancybox data-caption="<?php echo $arrCont["obra_nombre"];?>" id="linklupa"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                             </div>
                             <div class="imagen-thumbs">
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
-                                <div class="imagen-thumb" style="background-image: url('assets/obras/thumb/thumb-obra-test.jpg');"></div>
+                                <?php while ($arrImagAll = $rsImagAll->fetch(PDO::FETCH_BOTH)) { ?>
+                                    <div class="imagen-thumb" style="background-image: url('../../assets/galerias/small/<?php echo $arrImagAll["gxi_imagen"];?>');"></div>
+                                <?php } ?>
                             </div>
                         </div>
 
@@ -113,9 +110,12 @@ $rsImag = $objContenido->getAllContenido($link, $queryImagAll);
     <!-- BOOTSTRAP JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Google maps -->
-    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCquBaspZ7KL1dj1s2B8cYsrUNUJXHAuYk&callback=initMap"></script>
+    <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8_03r9LkKX7DqnHDYfv8lbyvWH7gadwM&callback=initMap"></script>
+    <!-- Fancybox -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js"></script>
     <!-- Main -->
     <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/main.js"></script>
+    <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/unaobra.js"></script>
 </body>
 
 </html>

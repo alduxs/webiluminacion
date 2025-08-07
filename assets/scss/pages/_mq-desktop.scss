@@ -57,10 +57,9 @@
         background-size: cover;
       }
       .imagen-thumbs {
-        @include grid(grid, 1fr 1fr 1fr 1fr);
+        @include grid(grid, 1fr 1fr 1fr);
         gap: 10px;
         .imagen-thumb {
-          height: 80px;
           background-repeat: no-repeat;
           background-size: cover;
           background-position: center;

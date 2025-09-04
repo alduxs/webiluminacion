@@ -1,5 +1,5 @@
 <div class="top-navigation">
-    <div class="logo"><a href="<?php echo _CONST_DOMINIO_ ?>"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt=""></a></div>
+    <div class="logo"><a href="<?php echo _CONST_DOMINIO_ ?>"><img src="<?php echo _CONST_DOMINIO_ ?>assets/img/logo.png" alt="" class="img-fluid"></a></div>
 
     <nav class="menu" id="menu">
         <ul>
@@ -18,8 +18,8 @@
 
     <div class="redes-top">
         <ul>
-            <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-            <li><a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+            <li><a href="https://www.instagram.com/websailuminacion/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+            <!--<li><a href="#"><i class="fa-brands fa-linkedin"></i></a></li>-->
         </ul>
     </div>
 

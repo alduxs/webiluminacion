@@ -32,7 +32,7 @@
 
   .home-empresa {
     .servicios-contenedor {
-      @include grid(grid, 1fr 3fr 1fr);
+      @include grid(grid, 1fr 4fr);
       gap: 10px;
 
       .servicios-imagen {
@@ -68,15 +68,48 @@
     }
   }
 
+  .home-obras {
+    padding: 80px 20px;
+    h1 {
+      font-size: 2.8rem;
+    }
+    .obra-item {
+      .obra-infomation {
+        width: 60%;
+        .obra-lead {
+          padding: 35px 35px 35px 25px;
+          h2 {
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            line-height: 1.4;
+          }
+          .localidad {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+
+
 }
 @media (min-width: 1200px) {
   .header-home {
     .top-navigation {
       width: 1140px;
       @include grid(grid, 1fr 5fr 1fr);
+      .menu {
+        ul {
+          a {
+            margin: 0 28px;
+          }
+        }
+      }
     }
     .text-slide {
       width: 1140px;
+      padding: 15px 0px 100px 0px;
     }
   }
 
@@ -84,13 +117,18 @@
     .top-navigation {
       width: 1140px;
       @include grid(grid, 1fr 5fr 1fr);
+      .menu {
+        ul {
+          a {
+            margin: 0 28px;
+          }
+        }
+      }
     }
   }
 
   .una-obras {
-
     .imagenes {
-     
       .imagen-pincipal {
         height: 350px;
       }
@@ -99,7 +137,6 @@
         gap: 10px;
         .imagen-thumb {
           height: 50px;
-
         }
       }
     }
@@ -111,14 +148,15 @@
       width: 1320px;
       @include grid(grid, 1fr 5fr 1fr);
     }
-    .header-int {
+    .text-slide {
+      width: 1320px;
+      padding: 15px 0px 100px 0px;
+    }
+  }
+  .header-int {
       .top-navigation {
         width: 1320px;
         @include grid(grid, 1fr 5fr 1fr);
       }
     }
-    .text-slide {
-      width: 1320px;
-    }
-  }
 }

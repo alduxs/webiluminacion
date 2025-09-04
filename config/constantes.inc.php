@@ -11,7 +11,7 @@ if ($host == "localhost" || $host == "192.168.100.16") {
 	$urladmin = "http://" . $host . "/webiluminacion/admin/"; // Admin Pagina Principal
 
 } else {
-	$urlweb = "https://" . $host; // Pagina Principal
+	$urlweb = "https://" . $host."/test/"; // Pagina Principal
 	$urladmin = "https://" . $host . "/admin"; // Admin Pagina Principal
 
 };

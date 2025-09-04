@@ -1,7 +1,7 @@
 .int-obras {
   padding: 80px 20px;
   h1 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     margin-bottom: 50px;
   }
   .obra-item {
@@ -12,7 +12,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     .obra-infomation {
-      width: 60%;
+      width: 80%;
       display: grid;
       padding-top: 10px;
       grid-template-columns: 3fr 1fr;
@@ -26,10 +26,11 @@
 
         h2 {
           text-transform: uppercase;
-          font-size: 1.2rem;
+          font-size: 1rem;
+          line-height: 1.4;
         }
         .localidad {
-          font-size: 1rem;
+          font-size: 0.9rem;
         }
       }
       .obra-flecha {

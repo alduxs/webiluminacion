@@ -2,7 +2,8 @@ let map;
 let btnHamburger = document.getElementById("bt-hamburger");
 let menu = document.getElementById("menu");
 let velo = document.getElementById("velo");
-
+let bloqueServicio = document.querySelectorAll(".bloque-servicio");
+let btMasInfo = document.getElementById("masinfo");
 
 function initMap() {
   var styledMapType = new google.maps.StyledMapType([
@@ -192,9 +193,11 @@ function initMap() {
   ]);
 
   var myLatLng = {
-    lat: -32.9457048737971,
-    lng: -60.64244032611096,
+    lat: -32.93980814071115,
+    lng: -60.6394189755427,
   };
+
+
   var map = new google.maps.Map(document.getElementById("map"), {
     center: myLatLng,
     zoom: 15,
@@ -224,3 +227,18 @@ btnHamburger.addEventListener("click", function () {
 
 });
 
+
+bloqueServicio.forEach((bloque) => {
+  bloque.addEventListener("click", function () {
+    let parrafo = this.querySelector("p");
+    parrafo.classList.toggle("p-active");
+    this.classList.toggle("backcolor");
+  });
+});
+
+btMasInfo.addEventListener("click", function () {
+  
+  document.getElementById("par3").classList.remove("phide");
+  document.getElementById("par4").classList.remove("phide");
+  
+});

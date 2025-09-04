@@ -8,7 +8,7 @@
                     <li><i class="fa-solid fa-location-dot"></i> Entre Rios 278</li>
                     <li><i class="fa-solid fa-phone"> </i> 341-6381078 / 341-7016957</li>
                     <li><i class="fa-solid fa-envelope"></i> <a href="mailto:websa.iluminacion@gmail.com">websa.iluminacion@gmail.com</a></li>
-                    <li><a href="#"><i class="fa-brands fa-instagram"></i></a> <a href="#"><i class="fa-brands fa-square-facebook"></i></a></li>
+                    <li><a href="https://www.instagram.com/websailuminacion/" target="_blank"><i class="fa-brands fa-instagram"></i></a> <!--<a href="#"><i class="fa-brands fa-linkedin"></i></a></li>-->
                 </ul>
 
             </div>

@@ -23,18 +23,15 @@ Carousel(
         let idSelectorPrev = `hl${inicial}`;
         let idSelectorPrev2 = `dt${inicial}`;
         document.getElementById(idSelectorPrev).style.display="none";
-        document.getElementById(idSelectorPrev2).style.display="none";
+        //document.getElementById(idSelectorPrev2).style.display="none";
         // Current page
         const pageIndex = instance.getPageIndex();
-
-        console.log(pageIndex);
 
         let idSelectorNext = `hl${pageIndex}`;
         let idSelectorNext2 = `dt${pageIndex}`;
         document.getElementById(idSelectorNext).style.display="block";
-        document.getElementById(idSelectorNext2).style.display="block";
+        //document.getElementById(idSelectorNext2).style.display="block";
         inicial = pageIndex;
-        
         
       },
     },

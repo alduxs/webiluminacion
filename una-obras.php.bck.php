@@ -14,11 +14,9 @@ $query = "SELECT * FROM obras WHERE obra_id = ?";
 $rsCont = $objContenido->getOneContenido($link,$arrData,$query);
 $arrCont = $rsCont->fetch(PDO::FETCH_BOTH);
 //IMAGEN DETACADA
-$queryImagDest = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
-$rsImagDest = $objContenido->getAllContenido($link, $queryImagDest);
-$arrImagDest = $rsImagDest->fetch(PDO::FETCH_BOTH);
-
-//Todas las imagenes grandes
+/*$queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC LIMIT 0,1";
+$rsImag = $objContenido->getAllContenido($link, $queryImag);
+$arrImag = $rsImag->fetch(PDO::FETCH_BOTH);*/
 $queryImag = "SELECT * FROM galeriasximag WHERE  gxi_id_gal = " . $arrCont["obras_galeria"] . " ORDER BY gxi_posicion ASC, gxi_id ASC";
 $rsImag = $objContenido->getAllContenido($link, $queryImag);
 //TODAS LAS IMAGENES DETACADA
@@ -31,27 +29,13 @@ $rsImagAll = $objContenido->getAllContenido($link, $queryImagAll);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title><?php echo $arrCont["obra_nombre"];?> | Web Iluminación</title>
+    <title>Web Iluminación</title>
 
-    <meta name="title" content="<?php echo $arrCont["obra_nombre"];?> | Web Iluminación" />
-    <meta name="description" content="Empresa referente en la comercialización y fabricación de luminarias, atendiendo una amplia variedad de sectores que abarcan desde espacios residenciales y comerciales hasta proyectos industriales y urbanos. Proyectos de iluminación y planificación, diseñando soluciones lumínicas personalizadas que transforman espacios, maximizando la eficiencia energética y creando ambientes únicos y funcionales" />
+    <meta name="title" content="" />
+    <meta name="description" content="" />
     <meta name="author" content="Aldo Iñiguez" />
     <meta name="revisit-after" content="15 days" />
     <meta name="robots" content="index follow" />
-
-    <link rel="icon" type="image/png" href="<?php echo _CONST_DOMINIO_ ?>favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="<?php echo _CONST_DOMINIO_ ?>favicon.svg" />
-    <link rel="shortcut icon" href="<?php echo _CONST_DOMINIO_ ?>favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo _CONST_DOMINIO_ ?>apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-    <link rel="manifest" href="<?php echo _CONST_DOMINIO_ ?>site.webmanifest" />
-
-    <link rel="icon" type="image/png" href="<?php echo _CONST_DOMINIO_ ?>favicon-96x96.png" sizes="96x96" />
-    <link rel="icon" type="image/svg+xml" href="<?php echo _CONST_DOMINIO_ ?>favicon.svg" />
-    <link rel="shortcut icon" href="<?php echo _CONST_DOMINIO_ ?>favicon.ico" />
-    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo _CONST_DOMINIO_ ?>apple-touch-icon.png" />
-    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
-    <link rel="manifest" href="<?php echo _CONST_DOMINIO_ ?>site.webmanifest" />
 
     <!-- BOOTSTRAP CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -69,7 +53,7 @@ $rsImagAll = $objContenido->getAllContenido($link, $queryImagAll);
 
     <div class="velo" id="velo"></div>
 
-    <header class="header-int" style="background-image: url('../../assets/galerias/big/<?php echo $arrImagDest["gxi_imagen"];?>');">
+    <header class="header-int" style="background-image: url('../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>');">
 
         <?php include_once('includes/top-navigation-int-obra.php'); ?>
 
@@ -94,17 +78,16 @@ $rsImagAll = $objContenido->getAllContenido($link, $queryImagAll);
                     <!-- Obra Item -->
                     <div class="col-md-10 offset-md-1">
                         <div class="imagenes">
-                            <?php $contador = 1; ?>
+
                             <?php while ($arrImag = $rsImag->fetch(PDO::FETCH_BOTH)) { ?>
-                                <div class="imagen-pincipal" style="background-image: url('../../assets/galerias/med/<?php echo $arrImag["gxi_imagen"];?>'); <?php if($contador>1){?> display:none; <?php } ?>" id="imagen-principal-<?php echo $arrImag["gxi_id"];?>">
-                                    <div class="lupa"><a href="../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>" data-fancybox="gallery" data-caption="<?php echo $arrCont["obra_nombre"];?>" data-thumb="../../assets/galerias/small/<?php echo $arrImag["gxi_imagen"];?>" id="linklupa"><i class="fa-solid fa-magnifying-glass"></i></a></div>
+                                <div class="imagen-pincipal<?php echo $arrImag["gxi_id"];?>" style="background-image: url('../../assets/galerias/med/<?php echo $arrImag["gxi_imagen"];?>');" id="imagen-principal">
+                                    <div class="lupa"><a href="../../assets/galerias/big/<?php echo $arrImag["gxi_imagen"];?>" data-fancybox data-caption="<?php echo $arrCont["obra_nombre"];?>" id="linklupa"><i class="fa-solid fa-magnifying-glass"></i></a></div>
                                 </div>
-                            <?php $contador++; ?>
                             <?php } ?>
 
                             <div class="imagen-thumbs">
                                 <?php while ($arrImagAll = $rsImagAll->fetch(PDO::FETCH_BOTH)) { ?>
-                                    <div class="imagen-thumb" style="background-image: url('../../assets/galerias/small/<?php echo $arrImagAll["gxi_imagen"];?>');" id="thumb-<?php echo $arrImagAll["gxi_id"];?>"></div>
+                                    <div class="imagen-thumb" style="background-image: url('../../assets/galerias/small/<?php echo $arrImagAll["gxi_imagen"];?>');"></div>
                                 <?php } ?>
                             </div>
                         </div>

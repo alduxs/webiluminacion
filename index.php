@@ -22,16 +22,23 @@ $intQtyRecords = $rsCont->rowCount();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Web Iluminación</title>
 
-    <meta name="title" content="" />
-    <meta name="description" content="" />
+    <meta name="title" content="Web Iluminación" />
+    <meta name="description" content="Empresa referente en la comercialización y fabricación de luminarias, atendiendo una amplia variedad de sectores que abarcan desde espacios residenciales y comerciales hasta proyectos industriales y urbanos. Proyectos de iluminación y planificación, diseñando soluciones lumínicas personalizadas que transforman espacios, maximizando la eficiencia energética y creando ambientes únicos y funcionales" />
     <meta name="author" content="Aldo Iñiguez" />
     <meta name="revisit-after" content="15 days" />
     <meta name="robots" content="index follow" />
 
+    <link rel="icon" type="image/png" href="<?php echo _CONST_DOMINIO_ ?>favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="<?php echo _CONST_DOMINIO_ ?>favicon.svg" />
+    <link rel="shortcut icon" href="<?php echo _CONST_DOMINIO_ ?>favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo _CONST_DOMINIO_ ?>apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="<?php echo _CONST_DOMINIO_ ?>site.webmanifest" />
+
     <!-- BOOTSTRAP CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 
-  
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.css" />
 
     <!-- CSS -->
@@ -54,14 +61,13 @@ $intQtyRecords = $rsCont->rowCount();
     <header class="header-home">
 
         <div class="contenedor-slide" id="contenedor-slide">
-           
+
             <div class="f-carousel" id="myCarousel">
                 <div class="f-carousel__viewport">
-                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide01.jpg');"></div>
-                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide02.jpg');"></div>
-                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide03.jpg');"></div>
-                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide04.jpg');"></div>
-                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide05.jpg');"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide05.jpg');background-repeat: no-repeat;"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide04.jpg');background-repeat: no-repeat;"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide01.jpg');background-repeat: no-repeat;"></div>
+                    <div class="f-carousel__slide" style="background-image: url('assets/slides/slide02.jpg');background-repeat: no-repeat;"></div>
                 </div>
             </div>
 
@@ -74,13 +80,13 @@ $intQtyRecords = $rsCont->rowCount();
         <div class="text-slide">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-md-6">
+                    <div class="col-12">
                         <div class="highligth" id="hl0">Proyecto y planificación</div>
-                        <div class="highligth" id="hl1" style="display: none;">Comercialización</div>
-                        <div class="highligth" id="hl2" style="display: none;">Fabricación</div>
-                        <div class="highligth" id="hl3" style="display: none;">Pruebas en Obra</div>
-                        <div class="highligth" id="hl4" style="display: none;">Distribución</div>
+                        <div class="highligth" id="hl1" style="display: none;">Pruebas en Obra</div>
+                        <div class="highligth" id="hl2" style="display: none;">Comercialización</div>
+                        <div class="highligth" id="hl3" style="display: none;">Distribución</div>
                     </div>
+                    <!--
                     <div class="col-12 col-md-6">
                         <div class="details" id="dt0">
                             <p>Contamos con una estructura técnica con capacidad de desarrollo integral de proyectos de iluminación y planificación.</p>
@@ -97,7 +103,7 @@ $intQtyRecords = $rsCont->rowCount();
                         <div class="details" id="dt4" style="display: none;">
                             <p>Contamos con una logística de distribución que nos permite realizar envíos a cualquier punto del país.</p>
                         </div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -173,19 +179,26 @@ $intQtyRecords = $rsCont->rowCount();
                         <div class="servicios-contenedor">
                             <h3 class="titulo-servicio">Servicios.</h3>
                             <div class="servicios-texto">
-                                <h4>Proyecto y planificación:</h4>
-                                <p>Contamos con una estructura técnica con capacidad de desarrollo integral de proyectos de iluminación y planificación, diseñando soluciones lumínicas personalizadas que transforman espacios, maximizando la eficiencia energética y creando ambientes únicos y funcionales. Desde la concepción inicial hasta la implementación final, nos encargamos de cada etapa (análisis de necesidades, selección de luminarias adecuadas para cada área, cálculos fotométricos) sin dejar de lados los desarrollos arquitectónicos y urbanísticos</p>
+                                <div class="bloque-servicio">
+                                    <h4>Proyecto y planificación <!--<i class="fa-solid fa-angle-down"></i>--></h4>
+                                    <p>Contamos con una estructura técnica con capacidad de desarrollo integral de proyectos de iluminación y planificación, diseñando soluciones lumínicas personalizadas que transforman espacios, maximizando la eficiencia energética y creando ambientes únicos y funcionales. Desde la concepción inicial hasta la implementación final, nos encargamos de cada etapa (análisis de necesidades, selección de luminarias adecuadas para cada área, cálculos fotométricos) sin dejar de lados los desarrollos arquitectónicos y urbanísticos</p>
+                                </div>
 
-                                <h4>Comercialización y Fabricación:</h4>
-                                <p>Comercializamos una amplia gama de luminarias de marcas reconocidas, tanto nacionales como importadas, ofreciendo soluciones lumínicas para todo tipo de espacios y estilos. Además, diseñamos y fabricamos luminarias especiales y a medida, creando piezas únicas que se adaptan perfectamente a las necesidades y visión de cada proyecto.</p>
+                                <div class="bloque-servicio">
+                                    <h4>Comercialización y Fabricación</h4>
+                                    <p>Comercializamos una amplia gama de luminarias de marcas reconocidas, tanto nacionales como importadas, ofreciendo soluciones lumínicas para todo tipo de espacios y estilos. Además, diseñamos y fabricamos luminarias especiales y a medida, creando piezas únicas que se adaptan perfectamente a las necesidades y visión de cada proyecto.</p>
+                                </div>
 
-                                <h4>Pruebas en Obra:</h4>
-                                <p>Contamos con una sólida experiencia en prueba de luminarias en obras, para asegurar que cada solución de iluminación sea optima, verificando la intensidad lumínica, la temperatura de color y la uniformidad de la luz en el entorno del proyecto. Esta etapa es crucial para garantizar que el resultado final cumpla con las expectativas estéticas y funcionales, optimizando el rendimiento de cada luminaria</p>
-
-                                <h4>Distribución:</h4>
-                                <p>Contamos con una logística de distribución que nos permite realizar envíos a cualquier punto del país</p>
+                                <div class="bloque-servicio">
+                                    <h4>Pruebas en Obra</h4>
+                                    <p>Contamos con una sólida experiencia en prueba de luminarias en obras, para asegurar que cada solución de iluminación sea optima, verificando la intensidad lumínica, la temperatura de color y la uniformidad de la luz en el entorno del proyecto. Esta etapa es crucial para garantizar que el resultado final cumpla con las expectativas estéticas y funcionales, optimizando el rendimiento de cada luminaria</p>
+                                </div>
+                                <div class="bloque-servicio">
+                                    <h4>Distribución</h4>
+                                    <p>Contamos con una logística de distribución que nos permite realizar envíos a cualquier punto del país</p>
+                                </div>
                             </div>
-                            <div class="servicios-imagen"></div>
+                            <!--<div class="servicios-imagen"></div>-->
                         </div>
 
                     </div>
@@ -203,6 +216,7 @@ $intQtyRecords = $rsCont->rowCount();
                                 <p>Nuestra identidad se construye sobre una atención personalizada para comprender en profundidad las necesidades específicas de cada cliente y cada obra, brindando soluciones de iluminación que se ajustan con precisión a sus objetivos y visión.</p>
                                 <p>La innovación es un pilar fundamental en todo lo que hacemos. Estamos en permanente búsqueda de las últimas tecnologías, tendencias y diseños del mercado para asegurar que nuestras propuestas no solo sean funcionales, sino también eficientes desde el punto de vista energético.</p>
                                 <p>Este compromiso nos permite ofrecer auténticas soluciones lumínicas que transforman ambientes y mejoran la calidad de vida.</p>
+                                <!--<p style="display: flex;justify-content: center;cursor:pointer;" id="masinfo"><i class="fa-solid fa-angle-down"></i></p>-->
                             </div>
                             <h3 class="titulo-empresa2">Empresa.</h3>
                         </div>
@@ -223,15 +237,15 @@ $intQtyRecords = $rsCont->rowCount();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- Google maps -->
     <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8_03r9LkKX7DqnHDYfv8lbyvWH7gadwM&callback=initMap"></script>
-    
-    
+
+
     <!-- Main -->
     <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/carousel/carousel.autoplay.umd.js"></script>
     <script src="<?php echo _CONST_DOMINIO_ ?>assets/js/slide.js"></script>
 
-    
+
 
 </body>
 

@@ -19,13 +19,20 @@ $intQtyRecords = $rsCont->rowCount();
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web Iluminación</title>
+    <title>Nuestras Obras | Web Iluminación</title>
 
-    <meta name="title" content="" />
-    <meta name="description" content="" />
+    <meta name="title" content="Nuestras Obras | Web Iluminación" />
+    <meta name="description" content="Empresa referente en la comercialización y fabricación de luminarias, atendiendo una amplia variedad de sectores que abarcan desde espacios residenciales y comerciales hasta proyectos industriales y urbanos. Proyectos de iluminación y planificación, diseñando soluciones lumínicas personalizadas que transforman espacios, maximizando la eficiencia energética y creando ambientes únicos y funcionales" />
     <meta name="author" content="Aldo Iñiguez" />
     <meta name="revisit-after" content="15 days" />
     <meta name="robots" content="index follow" />
+
+    <link rel="icon" type="image/png" href="<?php echo _CONST_DOMINIO_ ?>favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="<?php echo _CONST_DOMINIO_ ?>favicon.svg" />
+    <link rel="shortcut icon" href="<?php echo _CONST_DOMINIO_ ?>favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="<?php echo _CONST_DOMINIO_ ?>apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+    <link rel="manifest" href="<?php echo _CONST_DOMINIO_ ?>site.webmanifest" />
 
     <!-- BOOTSTRAP CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
@@ -77,7 +84,7 @@ $intQtyRecords = $rsCont->rowCount();
                 <!-- Titulo -->
                 <div class="row">
                     <div class="col-12">
-                        <h1>Nuestras Obras.</h1>
+                        <h1>NUESTRAS OBRAS.</h1>
                     </div>
                 </div>
 

@@ -4,7 +4,7 @@
     <nav class="menu" id="menu">
         <ul>
             <li><a href="<?php echo _CONST_DOMINIO_ ?>">Inicio</a></li>
-            <li><a href="<?php echo _CONST_DOMINIO_ ?>/obras">Obras</a></li>
+            <li><a href="<?php echo _CONST_DOMINIO_ ?>obras">Obras</a></li>
             <li><a href="<?php echo _CONST_DOMINIO_ ?>#empresaservicio">Servicios</a></li>
             <li><a href="<?php echo _CONST_DOMINIO_ ?>#empresaservicio">Empresa</a></li>
             <li><a href="<?php echo _CONST_DOMINIO_ ?>#contacto">Contacto</a></li>

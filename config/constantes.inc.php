@@ -41,7 +41,7 @@ define ('_IMG_GAL_SMALL_HEIGHT_', "350");
 
 //SLIDES
 // Path
-define('_CONST_PATH_CONTENIDO_SLIDE_', "../assets/imagenes/");
+define('_CONST_PATH_SLD_IMG_', "../assets/slides/");
 
 define('_CONST_TH_SLIDE_A_', "1903");
 define('_CONST_TV_SLIDE_A_', "582");

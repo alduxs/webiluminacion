@@ -406,7 +406,16 @@ class Archivo
     return true;
   }
 
-  
+  function renameImageBlob($pstrFileName) {
+    //$pstrFileName = strtolower($pstrFileName); // Pone en minúscula el nombre de la imagen
+    $valores = array("á","é","í","ó","ú","Á","É","Í","Ó","Ú"," ","ñ","º","(",")","ä","ë","ï","ö","ü","Ä","Ë","Ï","Ö","Ü",",","'","[","]","{","}","?","¿","/","$","+","*","&","!","#","@","%",";",":","|"); // Valores no permitidos
+    $valoresr = array("a","e","i","o","u","A","E","I","O","U","_","n","_","_","_","a","e","i","o","u","A","E","I","O","U","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_","_"); // Valores permitidos
+
+    $pstrFileName = str_replace($valores, $valoresr, $pstrFileName);
+    
+    $strImage = $pstrFileName;
+    return $strImage;
+  }
 
 }
 

@@ -110,7 +110,7 @@ $intQtyRecords = $rsCont->rowCount();
                                     </div>
                                     <div></div>
                                     <div></div>
-                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>/obras/<?php echo $arrContenido["obra_id"]; ?>/<?php echo buildLink($arrContenido["obra_nombre"]); ?>"><i class="fa-solid fa-angle-right"></i></a></div>
+                                    <div class="obra-flecha"><a href="<?php echo _CONST_DOMINIO_ ?>obras/<?php echo $arrContenido["obra_id"]; ?>/<?php echo buildLink($arrContenido["obra_nombre"]); ?>"><i class="fa-solid fa-angle-right"></i></a></div>
                                 </div>
                             </div>
                         </div>

@@ -31,6 +31,15 @@ if (isset($_GET["subseccion"])) {
     </ul>
 </li>
 
+<li <?php if ($seccion=="slides"): ?>class="active"<?php endif; ?>>
+    <a href="#"><i class="fa fa-file-photo-o"></i> <span class="nav-label">Slides</span> <span class="fa arrow"></span></a>
+    <ul class="nav nav-second-level collapse">
+        <li><a href="lstSlides.php?seccion=slides">Listar </a></li>
+        <li><a href="addSlides.php?seccion=slides">Agregar </a></li>
+    </ul>
+</li>
+
+
 
 
 <li <?php if ($seccion=="usuarios"): ?>class="active"<?php endif; ?>>
